@@ -6,10 +6,12 @@ but doesn't support Mocha.
 This library is designed for launching server-side mocha tests against either a local PhantomJS instance,
 or a Selenium grid service like SauceLabs.
 
-##Using grunt-mocha-sauce with Phantomjs
+###Using grunt-mocha-webdriver with Phantomjs
 
 1. Install phantomjs >= 1.8
-Homebrew makes this easy. brew install phantomjs
+Homebrew makes this easy. `brew install phantomjs`
 
 2. Run PhantomJS with WebDriver support
+```shell
 phantomjs --webdriver=<port>
+```
