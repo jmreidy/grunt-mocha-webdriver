@@ -4,7 +4,7 @@ var async = require('async');
 describe('A Mocha test run by grunt-mocha-sauce', function () {
 
   it('has a browser injected into it', function () {
-    assert.ok(browser);
+    assert.ok(this.browser);
   });
 
 });
@@ -15,6 +15,7 @@ describe('A basic Webdriver example', function () {
 
     it('performs as expected', function (done) {
       var searchBox;
+      var browser = this.browser;
       async.waterfall([
         function(cb) {
           browser.get('http://google.com', cb);

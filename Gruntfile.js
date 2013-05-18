@@ -30,13 +30,29 @@ module.exports = function (grunt) {
       }
     },
 
-    mochaWD: {
-      src: ['test/sanity.js'],
+    mochaWebdriver: {
       options: {
         timeout: 10000,
         reporter: 'spec'
       },
-      basic: {
+      phantom: {
+        src: ['test/sanity.js'],
+        options: {
+          testName: 'phantom test',
+          usePhantom: true
+        }
+      },
+      sauce: {
+        src: ['test/sanity.js'],
+        options: {
+          testName: 'sauce test',
+          concurrency: 2,
+          browsers: [
+            {browserName: 'internet explorer', platform: 'Windows 7', version: '9'},
+            {browserName: 'internet explorer', platform: 'Windows 7', version: '8'},
+            {browserName: 'chrome', platform: 'Windows 7', version: ''}
+          ]
+        }
       }
     }
   });
@@ -46,6 +62,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task.
-  grunt.registerTask('test', ['mochaWD']);
+  grunt.registerTask('test', ['mochaWebdriver']);
   grunt.registerTask('default', ['jshint', 'test']);
 };

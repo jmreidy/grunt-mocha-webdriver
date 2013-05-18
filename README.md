@@ -1,6 +1,10 @@
 ##Rationale
-`grunt-mocha-webdriver` is a combination of [mocha-cloud](https://github.com/visionmedia/mocha-cloud) and [grunt-saucelabs](https://github.com/axemclion/grunt-saucelabs).
-The former library doesn't have Grunt integration built in, and is designed for running tests inside the browser; the latter library can launch a grid of browsers on SauceLabs,
+`grunt-mocha-webdriver` is a combination of
+[mocha-cloud](https://github.com/visionmedia/mocha-cloud) and
+[grunt-saucelabs](https://github.com/axemclion/grunt-saucelabs).  The former
+library doesn't have Grunt integration built in, and is designed for running
+tests inside the browser; the latter library can launch a grid of browsers on
+SauceLabs,
 but doesn't support Mocha.
 
 This library is designed for launching server-side mocha tests against either a local PhantomJS instance,

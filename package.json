@@ -13,16 +13,15 @@
     "url": "https://github.com/jmreidy/grunt-mocha-sauce/blob/master/LICENSE-MIT"
   },
   "dependencies": {
-    "wd": "~0.0.32"
-  },
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.4.3",
+    "wd": "~0.0.32",
     "async": "~0.2.8",
     "mocha": "~1.9.0",
-    "grunt": "~0.4.0"
+    "sauce-tunnel": "git://github.com/jmreidy/sauce-tunnel.git",
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.4.3"
   },
   "peerDependencies": {
-    "mocha": "~1.9.0",
     "grunt": "~0.4.0"
   }
 }
