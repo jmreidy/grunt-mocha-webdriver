@@ -20,10 +20,7 @@ module.exports = function (grunt) {
       key: process.env.SAUCE_ACCESS_KEY,
       identifier: Math.floor((new Date()).getTime() / 1000 - 1230768000).toString(),
       concurrency: 1,
-      testTimeout: (1000 * 60 * 5),
       tunnelTimeout: 120,
-      testInterval: 1000 * 5,
-      testReadyTimeout: 1000 * 5,
       testName: "",
       testTags: []
     });
