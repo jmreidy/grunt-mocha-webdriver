@@ -4,7 +4,7 @@ node_js:
   - "0.10"
 before_script:
   - npm install -g grunt-cli
-  - phantomjs --webdriver=4444
+  - nohup phantomjs --webdriver=4444 > /dev/null &
 env:
   - [
       {secure: "RFaUvom2azEmlHWtSDpIm3gqD2KP+WehECy1YB7TnntvmcxAiwxwazjr8UV+\ncncJVnD6cwIk0b/3UjEzwHb6/1vGgKAmuOMhykDJvH1iLufztzIt4pOV3fLn\nBVkIrNwmPOaSIZhGIIGagYDX+u0Sm9RyLIQ0Lk6QX/OOwtJ+dKs="},
