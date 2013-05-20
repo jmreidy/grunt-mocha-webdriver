@@ -4,6 +4,7 @@ var wd = require('wd');
 var SauceTunnel = require('sauce-tunnel');
 var _ = require('grunt').util._;
 var async = require('async');
+var runner = require('./lib/mocha-runner');
 
 /*
  * grunt-mocha-sauce
@@ -41,7 +42,6 @@ module.exports = function (grunt) {
       browser.quit();
       next(err);
     };
-    var runner = require('./mocha-runner');
     runner(opts, fileGroup, browser, grunt, onTestFinish);
   }
 
