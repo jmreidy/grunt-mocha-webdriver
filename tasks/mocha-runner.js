@@ -30,4 +30,4 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
     grunt.log.error(e.stack);
     onTestFinish(false);
   }
-}
+};

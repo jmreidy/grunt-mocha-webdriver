@@ -76,7 +76,7 @@ module.exports = function (grunt) {
       grunt.log.writeln("=> Connecting to Saucelabs ...");
 
       tunnel.start(function(isCreated) {
-        if (!isCreated) return next(false);
+        if (!isCreated) { return next(false); }
         grunt.log.ok("Connected to Saucelabs.");
 
         var browsers = [];
@@ -106,8 +106,8 @@ module.exports = function (grunt) {
           testQueue.push(browserOpts, function (err) {
             if (err) {
               grunt.log.error('Tests failed for browser %s', browserTitle);
-              browsers.forEach(function (b) { b.quit() });
-              return tunnel.stop(function () { next(err) });
+              browsers.forEach(function (b) { b.quit(); });
+              return tunnel.stop(function () { next(err); });
             }
             grunt.log.verbose.writeln('%s test complete, %s tests remaining', browserTitle, testQueue.length());
           });
@@ -117,7 +117,7 @@ module.exports = function (grunt) {
           tunnel.stop(function () {
             next();
           });
-        }
+        };
       });
     }
     else {
