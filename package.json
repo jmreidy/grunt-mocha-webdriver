@@ -4,7 +4,7 @@
   "description": "Grunt task to run Mocha tests against a Selenium grid",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test"
   },
   "repository": "",
   "author": "Justin Reidy <jmreidy@rzrsharp.net>",
@@ -16,7 +16,7 @@
     "wd": "~0.0.32",
     "async": "~0.2.8",
     "mocha": "~1.9.0",
-    "sauce-tunnel": "git://github.com/jmreidy/sauce-tunnel.git",
+    "sauce-tunnel": "~1.0.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.4.3"

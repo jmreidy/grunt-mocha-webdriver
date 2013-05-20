@@ -110,6 +110,11 @@ and `version`.
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add
 unit tests for any new or changed functionality. Lint and test your code using `grunt`.
 
+##Release History
+
+### v0.9.0
+ - Initial release
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
