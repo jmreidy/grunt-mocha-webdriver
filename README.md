@@ -1,3 +1,5 @@
+https://secure.travis-ci.org/jmreidy/grunt-mocha-webdriver.png
+
 ##grunt-mocha-webdriver
 A [Grunt](http://gruntjs.com) task that runs Mocha-based functional tests against
 a Webdriver-enabled source: specifically, PhantomJS for local testing and Sauce Labs
