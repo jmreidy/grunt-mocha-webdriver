@@ -1,5 +1,5 @@
 {
-  "name": "grunt-mocha-wd",
+  "name": "grunt-mocha-webdriver",
   "version": "0.9.0",
   "description": "Grunt task to run Mocha tests against a Selenium grid",
   "main": "index.js",
