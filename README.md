@@ -1,4 +1,4 @@
-https://secure.travis-ci.org/jmreidy/grunt-mocha-webdriver.png
+![Travis Status](https://secure.travis-ci.org/jmreidy/grunt-mocha-webdriver.png)
 
 ##grunt-mocha-webdriver
 A [Grunt](http://gruntjs.com) task that runs Mocha-based functional tests against
