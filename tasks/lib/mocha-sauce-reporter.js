@@ -8,7 +8,7 @@ module.exports = function (browser) {
 
     var self = this;
     var stats = this.stats;
-    var numberTests = 1;
+    var numberTests = 0;
     var passes = 0;
     var failures = 0;
 
