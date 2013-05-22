@@ -32,7 +32,7 @@ module.exports = function (grunt) {
 
     mochaWebdriver: {
       options: {
-        timeout: 10000,
+        timeout: 1000 * 60,
         reporter: 'spec'
       },
       phantom: {

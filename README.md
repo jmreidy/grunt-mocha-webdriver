@@ -55,7 +55,13 @@ style will be added shortly.
 Please look at this project's Gruntfile and tests to see it in action.
 
 ###Options
-In addition the the usual Mocha options, the following options are supported:
+The usual Mocha options are passed through this task to a new Mocha instance.
+Please note that while it's possible to specify the Mocha reporter for
+tests running on Phantom, there's only one reporter currently supported
+for tests against Sauce Labs. This restriction is in place to handle
+concurrent Sauce Labs testing sessions, which could pollute the log.
+
+The following options can be supplied to the task:
 
 ####usePhantom
 Type: Boolean
