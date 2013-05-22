@@ -16,6 +16,7 @@ module.exports = function (grunt) {
         noarg: true,
         node: true,
         nonew: true,
+        proto: true,
         sub: true,
         undef: true,
         predef: [
@@ -40,6 +41,14 @@ module.exports = function (grunt) {
         options: {
           testName: 'phantom test',
           usePhantom: true
+        }
+      },
+      promises: {
+        src: ['test/promiseAPi.js'],
+        options: {
+          testName: 'phantom test',
+          usePhantom: true,
+          usePromises: true
         }
       },
       sauce: {

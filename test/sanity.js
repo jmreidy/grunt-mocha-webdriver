@@ -14,7 +14,7 @@ describe('A basic Webdriver example', function () {
   describe('injected browser executing a Google Search', function () {
 
     it('performs as expected', function (done) {
-      var searchBox = undefined;
+      var searchBox;
       var browser = this.browser;
       async.waterfall([
         function(cb) {

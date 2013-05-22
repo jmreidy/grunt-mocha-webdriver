@@ -1,12 +1,12 @@
 var Mocha = require('mocha');
 var path = require('path');
 var Module = require('module');
-var SauceReporter = require('./mocha-sauce-reporter');
+var generateSauceReporter = require('./mocha-sauce-reporter');
 
 module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
   //browserTitle means we're on a SL test
   if (browser.browserTitle) {
-    opts.reporter = SauceReporter(browser);
+    opts.reporter = generateSauceReporter(browser);
   }
   var mocha = new Mocha(opts);
 

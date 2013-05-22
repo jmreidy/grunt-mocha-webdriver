@@ -58,7 +58,13 @@ module.exports = function (grunt) {
   }
 
   function runTestsOnPhantom(fileGroup, opts, next) {
-    var browser = wd.remote();
+    var browser;
+    if (opts.usePromises) {
+      browser = wd.promiseRemote();
+    }
+    else {
+      browser = wd.remote();
+    }
     grunt.log.writeln('Running webdriver tests against PhantomJS.');
     browser.init({}, function () {
       runTestsForBrowser(opts, fileGroup, browser, next);

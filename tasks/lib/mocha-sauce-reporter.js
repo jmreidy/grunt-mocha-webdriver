@@ -32,9 +32,9 @@ module.exports = function (browser) {
       console.log('Test video at: http://saucelabs.com/tests/' + browser.sessionID);
       console.log();
     });
-  }
+  };
 
   SauceReporter.prototype.__proto__ = BaseReporter.prototype;
 
   return SauceReporter;
-}
+};
