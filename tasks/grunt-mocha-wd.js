@@ -73,7 +73,9 @@ module.exports = function (grunt) {
       grunt.log.writeln("=> Connecting to Saucelabs ...");
 
       tunnel.start(function(isCreated) {
-        if (!isCreated) { return next(false); }
+        if (!isCreated) {
+          return next(new Error('Failed to create Sauce tunnel.'));
+        }
         grunt.log.ok("Connected to Saucelabs.");
 
         var browsers = [];
