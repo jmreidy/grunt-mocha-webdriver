@@ -78,7 +78,7 @@ module.exports = function (grunt) {
         }
         grunt.log.ok("Connected to Saucelabs.");
 
-        var browsers = [];
+        var browser_failed = false;
         var testQueue = async.queue(function (browserOpts, cb) {
           var browser = wd.remote('ondemand.saucelabs.com', 80, opts.username, opts.key);
           browserOpts = _.extend(browserOpts, {
@@ -92,9 +92,7 @@ module.exports = function (grunt) {
               grunt.log.error("Could not initialize browser on Saucelabs");
               return cb(false);
             }
-            grunt.log.writeln('Running tests on %s', browserOpts.browserTitle);
             runTestsForBrowser(opts, fileGroup, browser, cb);
-            browsers.push(browser);
           });
         }, opts.concurrency);
 
@@ -104,17 +102,19 @@ module.exports = function (grunt) {
           grunt.log.verbose.writeln('Queueing ' + browserTitle + ' on Saucelabs.');
           testQueue.push(browserOpts, function (err) {
             if (err) {
-              grunt.log.error('Tests failed for browser %s', browserTitle);
-              browsers.forEach(function (b) { b.quit(); });
-              return tunnel.stop(function () { next(err); });
+              browser_failed = true;
             }
             grunt.log.verbose.writeln('%s test complete, %s tests remaining', browserTitle, testQueue.length());
           });
         });
 
         testQueue.drain = function () {
+          var err;
+          if (browser_failed) {
+            err = new Error('One or more tests on Sauce Labs failed.');
+          }
           tunnel.stop(function () {
-            next();
+            next(err);
           });
         };
       });
