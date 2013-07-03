@@ -7,7 +7,7 @@ before_script:
   - nohup phantomjs --webdriver=4444 > /dev/null &
 env:
   - [
-      {secure: "RFaUvom2azEmlHWtSDpIm3gqD2KP+WehECy1YB7TnntvmcxAiwxwazjr8UV+\ncncJVnD6cwIk0b/3UjEzwHb6/1vGgKAmuOMhykDJvH1iLufztzIt4pOV3fLn\nBVkIrNwmPOaSIZhGIIGagYDX+u0Sm9RyLIQ0Lk6QX/OOwtJ+dKs="},
-      {secure: "QffTuEVrhOi7XI7RBadefKfuk7YDFw+DCxo1F40pwyyH+/4SW1jmk6xqKOXN\ndJGdz7R1GlAodcxTMPjsm6YgtTRiLHydL6s1GvpR6RSyRGVF5hz+gfHSk0/q\niRpEDPg77573q30hlICNhWpooJa0CiYqUNN9iCmDHkZobmb0Hyg="}
+      secure: "Xf3N2iXv8mm0kIfm4kMvipJhit6Ij0ivzl8Cs7zt6rKLvz4kgsm86ROHUrMn\nr/WWtV/5LWLRaCqo1fp1c3gVwlBfm2OaYcYYkxRcQyruWenKt0SVFwDTOcqn\nDUzZgKCNREJzHeg/ehN8lH3wI1LFsZ2TgLrBy/nmfIt9hAc4ozY=",
+      secure: "MoxQjNsBFPbn2c75J2wUn/VUlW2I52GjqlXiCG34BDERRoM+mqJEMXMQg8xV\nLHieScVHGbk7MG6sGqIwknvhAgU/4DQBYCHAUzW3dtqCv3/FPQmP131vcrH1\nhyIjYUbM/J+S+Xsw2o/MnGf98Xza7x1RvnTBzAahkGTDR3kmxT0="
     ]
 
