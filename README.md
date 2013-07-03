@@ -12,7 +12,7 @@ Sauce Labs, but doesn't support Mocha.
 
 
 ##Getting Started
-This plugin requires Grunt `>=0.4.0`.
+This plugin requires Grunt `>=0.4.0`; connecting to Sauce Labs requires java. 
 
 Install the plugin with:
 
