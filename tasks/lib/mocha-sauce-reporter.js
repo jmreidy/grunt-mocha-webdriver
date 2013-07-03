@@ -11,13 +11,17 @@ module.exports = function (browser) {
     var numberTests = 0;
     var passes = 0;
     var failures = 0;
+    var failInfo = [];
 
     runner.on('test end', function () {
       numberTests++;
     });
 
     runner.on('pass', function () { passes++; });
-    runner.on('fail', function () { failures++; });
+    runner.on('fail', function () {
+      failures++;
+      failInfo.push(runner.test.title);
+    });
 
     runner.on('end', function(){
       console.log();
@@ -28,6 +32,7 @@ module.exports = function (browser) {
       }
       if (failures) {
         console.log(color('fail', '%d %s'), failures, 'tests failed.');
+        console.log(color('fail', failInfo.join('\n')));
       }
       console.log('Test video at: http://saucelabs.com/tests/' + browser.sessionID);
       console.log();
