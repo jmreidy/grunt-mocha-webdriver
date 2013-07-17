@@ -11,7 +11,8 @@ module.exports = function (browser) {
     var numberTests = 0;
     var passes = 0;
     var failures = 0;
-    var failInfo = [];
+    var failInfo = {};
+    var i;
 
     runner.on('test end', function () {
       numberTests++;
@@ -20,7 +21,8 @@ module.exports = function (browser) {
     runner.on('pass', function () { passes++; });
     runner.on('fail', function () {
       failures++;
-      failInfo.push(runner.test.title);
+      failInfo[runner.suite.title] = failInfo[runner.suite.title] || [];
+      failInfo[runner.suite.title].push(e.title + (e.err.message ? (': ' + e.err.message) : ''));
     });
 
     runner.on('end', function(){
@@ -32,7 +34,9 @@ module.exports = function (browser) {
       }
       if (failures) {
         console.log(color('fail', '%d %s'), failures, 'tests failed.');
-        console.log(color('fail', failInfo.join('\n')));
+        for(i in failInfo) {
+          console.log(color('fail', i + '\n\t' + failInfo[i].join('\n\t')));
+        }
       }
       console.log('Test video at: http://saucelabs.com/tests/' + browser.sessionID);
       console.log();
