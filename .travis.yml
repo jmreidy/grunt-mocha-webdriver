@@ -1,13 +1,21 @@
+---
 language: node_js
 node_js:
-  - "0.8"
-  - "0.10"
+- '0.8'
+- '0.10'
 before_script:
-  - npm install -g grunt-cli
-  - nohup phantomjs --webdriver=4444 > /dev/null &
+- npm install -g grunt-cli
+- nohup phantomjs --webdriver=4444 > /dev/null &
+- sleep 3
 env:
-  - [
-      secure: "Xf3N2iXv8mm0kIfm4kMvipJhit6Ij0ivzl8Cs7zt6rKLvz4kgsm86ROHUrMn\nr/WWtV/5LWLRaCqo1fp1c3gVwlBfm2OaYcYYkxRcQyruWenKt0SVFwDTOcqn\nDUzZgKCNREJzHeg/ehN8lH3wI1LFsZ2TgLrBy/nmfIt9hAc4ozY=",
-      secure: "MoxQjNsBFPbn2c75J2wUn/VUlW2I52GjqlXiCG34BDERRoM+mqJEMXMQg8xV\nLHieScVHGbk7MG6sGqIwknvhAgU/4DQBYCHAUzW3dtqCv3/FPQmP131vcrH1\nhyIjYUbM/J+S+Xsw2o/MnGf98Xza7x1RvnTBzAahkGTDR3kmxT0="
-    ]
+  global:
+  - secure: ! 'FS5tU4qtln1lrTv3PqWrQxVs3MAoJf7sbba2dISXLs7AR5IbluD2dkvrKG0H
 
+      EziB1Uk37QU/AJXvWnE26z07aQn32r71N1YVUWDpdb9EW7s4aQAYXF9+JLG3
+
+      AToVU/EG21qXbRjxbKXEoF1AeADmHsErsgk2h3TNUyNh9+ubQeQ='
+  - secure: ! 'mrabOe/9B1ec8cq/iOd9jFlAtO2yRQOZlKyFMjNzqwiC7XFjLTiI/D3eV8/h
+
+      gTH8kN/EKZ5s+DKSZkwDK1BTrWJ9B3MGbPvOhjCeWaY0hpYWPGuolReu5311
+
+      XYON4DAqOmzV1wHPHI/EZVULH7wHBBOflyVTHbr1JB2QY2bVsjI='
