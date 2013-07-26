@@ -19,7 +19,7 @@ module.exports = function (browser) {
     });
 
     runner.on('pass', function () { passes++; });
-    runner.on('fail', function () {
+    runner.on('fail', function (e) {
       failures++;
       failInfo[runner.suite.title] = failInfo[runner.suite.title] || [];
       failInfo[runner.suite.title].push(e.title + (e.err.message ? (': ' + e.err.message) : ''));
