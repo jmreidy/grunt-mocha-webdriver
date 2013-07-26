@@ -17,7 +17,7 @@ This plugin requires Grunt `>=0.4.0`; connecting to Sauce Labs requires java.
 Install the plugin with:
 
 ```shell
-npm install grunt-browserify --save-dev
+npm install grunt-mocha-webdriver --save-dev
 ```
 
 Then add this line to your project's Gruntfile:
