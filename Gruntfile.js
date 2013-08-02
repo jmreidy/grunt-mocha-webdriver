@@ -51,6 +51,15 @@ module.exports = function (grunt) {
           usePromises: true
         }
       },
+      prerequire: {
+        src: ['test/prerequire.js'],
+        options: {
+          usePhantom: true,
+          prerequire: function (context) {
+            context.foo = 'bar';
+          }
+        }
+      },
       sauce: {
         src: ['test/sanity.js'],
         options: {
