@@ -62,6 +62,19 @@ module.exports = function (grunt) {
             {browserName: 'chrome', platform: 'Windows 7', version: ''}
           ]
         }
+      },
+      saucePromises: {
+        src: ['test/promiseAPi.js'],
+        options: {
+          testName: 'sauce promises test',
+          concurrency: 2,
+          usePromises: true,
+          browsers: [
+            {browserName: 'internet explorer', platform: 'Windows 7', version: '9'},
+            {browserName: 'internet explorer', platform: 'Windows 7', version: '8'},
+            {browserName: 'chrome', platform: 'Windows 7', version: ''}
+          ]
+        }
       }
     }
   });
