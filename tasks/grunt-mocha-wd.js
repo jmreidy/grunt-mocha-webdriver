@@ -21,7 +21,7 @@ module.exports = function (grunt) {
       key: process.env.SAUCE_ACCESS_KEY,
       identifier: Math.floor((new Date()).getTime() / 1000 - 1230768000).toString(),
       concurrency: 1,
-      tunnelTimeout: 120,
+      tunnelTimeout: 25000,
       testName: "",
       testTags: []
     });
