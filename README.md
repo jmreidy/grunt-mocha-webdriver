@@ -12,7 +12,7 @@ Sauce Labs, but doesn't support Mocha.
 
 
 ##Getting Started
-This plugin requires Grunt `>=0.4.0`; connecting to Sauce Labs requires java. 
+This plugin requires Grunt `>=0.4.0`; connecting to Sauce Labs requires java.
 
 Install the plugin with:
 
@@ -48,9 +48,9 @@ Run this task with the `mochaWebdriver` grunt command. For this plugin, the Grun
 the `mochaWebdriver` multitask. These tests should be structured as normal
 Mocha tests, but should use `this.browser` to refer to a WebDriver browser
 which will be injected into the test's context. The browser can be driven
-with the API specified in [WD.js](https://github.com/admc/wd). Currently,
-only the callback-based version of the API is supported, although the Promise
-style will be added shortly.
+with the API specified in [WD.js](https://github.com/admc/wd). The default
+is to use the callback-enabled version of WD.js, but `usePromises` can be passed
+as `true` to switch to the Promise-enabled version.
 
 Please look at this project's Gruntfile and tests to see it in action.
 
@@ -69,6 +69,12 @@ Type: Boolean
 Specifies whether the task should test against a PhantomJS instance instead
 of Sauce Labs. Defaults to false. If true, the tests will run against Phantom
 INSTEAD of running against Sauce Labs.
+
+####usePromises
+Type: Boolean
+
+Specifies whether to use the Promise version of the WD.js API. Defaults to
+false (the callback version).
 
 ####username
 Type: String
@@ -122,6 +128,18 @@ unit tests for any new or changed functionality. Lint and test your code using `
 
 ### v0.9.0
  - Initial release
+
+### v0.9.1
+ - Setup Travis for CI
+ - Improve SauceLabs test failure handling
+ - Test count was off by 1
+
+### v0.9.2
+ - Update docs
+ - Add initial promise support (Phantom only)
+
+### v0.9.3
+ - Enable Promise support (Phantom and SauceLabs)
 
 ##License
 Copyright (c) 2013 Justin Reidy
