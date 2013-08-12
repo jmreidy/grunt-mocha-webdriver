@@ -86,7 +86,13 @@ module.exports = function (grunt) {
 
         var browser_failed = false;
         var testQueue = async.queue(function (browserOpts, cb) {
-          var browser = wd.remote('ondemand.saucelabs.com', 80, opts.username, opts.key);
+          var browser;
+          if (opts.usePromises) {
+            browser = wd.promiseRemote('ondemand.saucelabs.com', 80, opts.username, opts.key);
+          }
+          else {
+            browser = wd.remote('ondemand.saucelabs.com', 80, opts.username, opts.key);
+          }
           browser.browserTitle = browserOpts.browserTitle;
           browserOpts = _.extend(browserOpts, {
             name: opts.testName,
