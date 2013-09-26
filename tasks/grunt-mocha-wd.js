@@ -5,6 +5,8 @@ var SauceTunnel = require('sauce-tunnel');
 var _ = require('grunt').util._;
 var async = require('async');
 var runner = require('./lib/mocha-runner');
+var child = require('child_process');
+var phantomjs = require('phantomjs');
 
 /*
  * grunt-mocha-sauce
@@ -28,7 +30,11 @@ module.exports = function (grunt) {
 
     grunt.util.async.forEachSeries(this.files, function (fileGroup, next) {
       if (opts.usePhantom) {
-        runTestsOnPhantom(fileGroup, opts, next);
+        var process = startPhantomJS(function () {
+          runTestsOnPhantom(fileGroup, opts, next, function () {
+            process.kill();
+          });
+        });
       }
       else {
         runTestsOnSaucelabs(fileGroup, opts, next);
@@ -37,10 +43,13 @@ module.exports = function (grunt) {
   });
 
 
-  function runTestsForBrowser(opts, fileGroup, browser, next) {
+  function runTestsForBrowser(opts, fileGroup, browser, next, cb) {
     var onTestFinish = function(err) {
       browser.quit();
       next(err);
+      if (cb) {
+        cb();
+      }
     };
     runner(opts, fileGroup, browser, grunt, onTestFinish);
   }
@@ -57,7 +66,20 @@ module.exports = function (grunt) {
     });
   }
 
-  function runTestsOnPhantom(fileGroup, opts, next) {
+  function startPhantomJS(cb) {
+    var process = child.execFile(phantomjs.path, ['--webdriver=4444']);
+    process.stdout.setEncoding('utf8');
+    process.stdout.on('data', function (data) {
+      if (/running/i.test(data) && cb) {
+        cb();
+      } else if (/error/i.test(data)) {
+        console.log('Error starting PhantomJS');
+      }
+    });
+    return process;
+  }
+
+  function runTestsOnPhantom(fileGroup, opts, next, cb) {
     var browser;
     if (opts.usePromises) {
       browser = wd.promiseRemote();
@@ -67,7 +89,7 @@ module.exports = function (grunt) {
     }
     grunt.log.writeln('Running webdriver tests against PhantomJS.');
     browser.init({}, function () {
-      runTestsForBrowser(opts, fileGroup, browser, next);
+      runTestsForBrowser(opts, fileGroup, browser, next, cb);
     });
   }
 

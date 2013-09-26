@@ -16,7 +16,8 @@
     "wd": "~0.0.32",
     "async": "~0.2.8",
     "mocha": "~1.9.0",
-    "sauce-tunnel": "~1.0.0"
+    "sauce-tunnel": "~1.0.0",
+    "phantomjs": "~1.9.1-0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.4.3"
