@@ -26,21 +26,10 @@ grunt.loadNpmTasks('grunt-mocha-webdriver');
 ```
 
 ###Using grunt-mocha-webdriver with Phantomjs
-If you want to use this plugin to test against PhantomJS, you'll
-need to make sure Phantom is installed correctly.
-
-1. Install PhantomJS >= 1.8
-If you're on a Mac, Homebrew makes this easy. Just
-```shell
-brew install phantomjs
-```
-
-2. Run PhantomJS with WebDriver support, specifying 4444 as the port.
-```shell
-phantomjs --webdriver=4444
-```
-
-3. Add the `usePhantom` flag in the Grunt option specified below.
+In version 0.9.4 and later, phantom is included via its NPM module. In order
+to run tests against phantom, simply add the `usePhantom` flag to the options hash.
+The plugin defaults to hitting port 4444, but you can specify your own port via
+the `phantomPort` option.
 
 ##Documentation
 Run this task with the `mochaWebdriver` grunt command. For this plugin, the Grunt
@@ -69,6 +58,12 @@ Type: Boolean
 Specifies whether the task should test against a PhantomJS instance instead
 of Sauce Labs. Defaults to false. If true, the tests will run against Phantom
 INSTEAD of running against Sauce Labs.
+
+####phantomPort
+Type: Int (Default: 4444)
+
+if testing against PhantomJS with the `usePhantom` flag, specify the port
+to test against.
 
 ####usePromises
 Type: Boolean
@@ -140,6 +135,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 
 ### v0.9.3
  - Enable Promise support (Phantom and SauceLabs)
+
+### v0.9.4
+ - Run phantom from grunt-mocha-webdriver directly
 
 ##License
 Copyright (c) 2013 Justin Reidy
