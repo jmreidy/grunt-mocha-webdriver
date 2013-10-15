@@ -5,6 +5,8 @@ var SauceTunnel = require('sauce-tunnel');
 var _ = require('grunt').util._;
 var async = require('async');
 var runner = require('./lib/mocha-runner');
+var phantom = require('phantomjs');
+var childProcess = require('child_process');
 
 /*
  * grunt-mocha-sauce
@@ -59,15 +61,39 @@ module.exports = function (grunt) {
 
   function runTestsOnPhantom(fileGroup, opts, next) {
     var browser;
+    var phantomPort = opts.phantomPort? opts.phantomPort : 4444;
+
     if (opts.usePromises) {
-      browser = wd.promiseRemote();
+      browser = wd.promiseRemote({port: phantomPort});
     }
     else {
-      browser = wd.remote();
+      browser = wd.remote({port: phantomPort});
     }
     grunt.log.writeln('Running webdriver tests against PhantomJS.');
-    browser.init({}, function () {
-      runTestsForBrowser(opts, fileGroup, browser, next);
+
+
+    startPhantom(phantomPort, function (phantomProc) {
+      browser.init({}, function () {
+        runTestsForBrowser(opts, fileGroup, browser, function () {
+          phantomProc.on('close', next);
+          phantomProc.kill();
+        });
+      });
+    });
+
+  }
+
+  function startPhantom(port, next) {
+    var process = childProcess.execFile(phantom.path, ['--webdriver', port]);
+    process.stdout.setEncoding('utf8');
+    process.stdout.on('data', function (data) {
+      if (data.match(/running/i)) {
+        grunt.log.writeln('PhantomJS started.');
+        next(process);
+      }
+      else if (data.match(/error/i)) {
+        grunt.log.error('Error starting PhantomJS');
+      }
     });
   }
 

@@ -40,7 +40,8 @@ module.exports = function (grunt) {
         src: ['test/sanity.js'],
         options: {
           testName: 'phantom test',
-          usePhantom: true
+          usePhantom: true,
+          phantomPort: 5555
         }
       },
       promises: {
