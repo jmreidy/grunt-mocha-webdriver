@@ -149,6 +149,10 @@ unit tests for any new or changed functionality. Lint and test your code using `
 ### v0.9.5
  - Implement `require` option for pre-require hook
 
+### v0.9.6
+ - PhantomJS integration failed to report the correct status code
+ when exiting Grunt after tests failed.
+
 ##License
 Copyright (c) 2013 Justin Reidy
 

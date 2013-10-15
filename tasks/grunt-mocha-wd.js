@@ -74,8 +74,8 @@ module.exports = function (grunt) {
 
     startPhantom(phantomPort, function (phantomProc) {
       browser.init({}, function () {
-        runTestsForBrowser(opts, fileGroup, browser, function () {
-          phantomProc.on('close', next);
+        runTestsForBrowser(opts, fileGroup, browser, function (err) {
+          phantomProc.on('close', function () { next(err); });
           phantomProc.kill();
         });
       });
