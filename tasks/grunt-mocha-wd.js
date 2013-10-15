@@ -93,6 +93,7 @@ module.exports = function (grunt) {
       }
       else if (data.match(/error/i)) {
         grunt.log.error('Error starting PhantomJS');
+        grunt.log.error(data);
       }
     });
   }

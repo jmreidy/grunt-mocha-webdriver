@@ -71,6 +71,13 @@ Type: Boolean
 Specifies whether to use the Promise version of the WD.js API. Defaults to
 false (the callback version).
 
+####require
+Type: Array <String>
+
+An array of paths for requiring before running Mocha tests. Useful for
+pre-requires that manipulate Mocha's global environment (e.g.g making Sinon
+globally available).
+
 ####username
 Type: String
 
@@ -138,6 +145,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 
 ### v0.9.4
  - Run phantom from grunt-mocha-webdriver directly
+
+### v0.9.5
+ - Implement `require` option for pre-require hook
 
 ##License
 Copyright (c) 2013 Justin Reidy

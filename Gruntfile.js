@@ -52,6 +52,14 @@ module.exports = function (grunt) {
           usePromises: true
         }
       },
+      requires: {
+        src: ['test/requires.js'],
+        options: {
+          testName: 'phantom requires test',
+          usePhantom: true,
+          require: ['test/support/index.js']
+        }
+      },
       sauce: {
         src: ['test/sanity.js'],
         options: {
