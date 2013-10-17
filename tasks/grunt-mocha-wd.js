@@ -86,16 +86,18 @@ module.exports = function (grunt) {
   function startPhantom(port, next) {
     var process = childProcess.execFile(phantom.path, ['--webdriver', port]);
     process.stdout.setEncoding('utf8');
-    process.stdout.on('data', function (data) {
+    var onPhantomData = function (data) {
       if (data.match(/running/i)) {
         grunt.log.writeln('PhantomJS started.');
+        process.stdout.removeListener('data', onPhantomData);
         next(process);
       }
       else if (data.match(/error/i)) {
         grunt.log.error('Error starting PhantomJS');
         grunt.log.error(data);
       }
-    });
+    };
+    process.stdout.on('data', onPhantomData);
   }
 
   function runTestsOnSaucelabs(fileGroup, opts, next) {
