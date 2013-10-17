@@ -153,6 +153,10 @@ unit tests for any new or changed functionality. Lint and test your code using `
  - PhantomJS integration failed to report the correct status code
  when exiting Grunt after tests failed.
 
+### v0.9.7
+ - Prevent errors from causing Phantom to exit early
+ - Better error messages via wd.js
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
