@@ -167,3 +167,17 @@ module.exports = function (grunt) {
   }
 
 };
+
+//wd.js monkey patch for clearer errors
+var _newError = wd.webdriver.prototype._newError;
+wd.webdriver.prototype._newError = function (opts) {
+  var err = _newError(opts);
+  try {
+    err = new Error(err.cause.value.message
+      .match(/([\s\S]*) caused/)[1]
+      .match(/'([\s\S]*)'\n/)[1]
+    );
+  }
+  catch (e) {}
+  return err;
+};
