@@ -71,6 +71,11 @@ Type: Boolean
 Specifies whether to use the Promise version of the WD.js API. Defaults to
 false (the callback version).
 
+####ignoreSslErrors
+Type: Boolean
+
+A passthrough to the Phantom CLI runner to ignore errors with SSL certs.
+
 ####require
 Type: Array <String>
 
@@ -156,6 +161,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 ### v0.9.7
  - Prevent errors from causing Phantom to exit early
  - Better error messages via wd.js
+
+### v0.9.8
+ - `ignoreSslErrors` option added as a phantom CLI passthrough
 
 ##License
 Copyright (c) 2013 Justin Reidy
