@@ -8,9 +8,7 @@ describe('Promise-enabled WebDriver', function () {
       var searchBox;
       var browser = this.browser;
       browser.get('http://google.com')
-        .then(function () {
-          return browser.elementByName('q');
-        })
+        .elementByName('q')
         .then(function (el) {
           searchBox = el;
           return searchBox.type('webdriver');

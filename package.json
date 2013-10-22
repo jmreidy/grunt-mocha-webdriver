@@ -13,7 +13,7 @@
     "url": "https://github.com/jmreidy/grunt-mocha-sauce/blob/master/LICENSE-MIT"
   },
   "dependencies": {
-    "wd": "~0.1.5",
+    "wd": "~0.2.0",
     "async": "~0.2.8",
     "mocha": "~1.13.0",
     "sauce-tunnel": "~1.0.1"

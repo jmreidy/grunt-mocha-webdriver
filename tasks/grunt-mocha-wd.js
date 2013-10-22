@@ -64,7 +64,7 @@ module.exports = function (grunt) {
     var phantomPort = opts.phantomPort? opts.phantomPort : 4444;
 
     if (opts.usePromises) {
-      browser = wd.promiseRemote({port: phantomPort});
+      browser = wd.promiseChainRemote({port: phantomPort});
     }
     else {
       browser = wd.remote({port: phantomPort});

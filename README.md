@@ -68,7 +68,7 @@ to test against.
 ####usePromises
 Type: Boolean
 
-Specifies whether to use the Promise version of the WD.js API. Defaults to
+Specifies whether to use the Promise chain version of the WD.js API. Defaults to
 false (the callback version).
 
 ####ignoreSslErrors
@@ -164,6 +164,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 
 ### v0.9.8
  - `ignoreSslErrors` option added as a phantom CLI passthrough
+
+### v0.9.9
+ - Update wd.js to 0.2.0, and switch to the new `promiseChain` API
 
 ##License
 Copyright (c) 2013 Justin Reidy
