@@ -75,7 +75,10 @@ module.exports = function (grunt) {
       if (err) { return next(err); }
       browser.init({}, function () {
         runTestsForBrowser(opts, fileGroup, browser, function (err) {
-          phantomProc.on('close', function () { next(err); });
+          phantomProc.on('close', function () {
+            grunt.log.writeln('Phantom exited.');
+            next(err);
+          });
           phantomProc.kill();
         });
       });
