@@ -97,7 +97,7 @@ module.exports = function (grunt) {
       if (data.match(/running/i)) {
         grunt.log.writeln('PhantomJS started.');
         process.stdout.removeListener('data', onPhantomData);
-        next(process);
+        next(null, process);
       }
       else if (data.match(/error/i)) {
         grunt.log.error('Error starting PhantomJS');
