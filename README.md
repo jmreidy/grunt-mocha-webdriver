@@ -168,6 +168,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 ### v0.9.9
  - Update wd.js to 0.2.0, and switch to the new `promiseChain` API
 
+### v0.9.10
+ - Fix `promiseChain` on Sauce
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
