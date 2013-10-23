@@ -5,8 +5,6 @@ node_js:
 - '0.10'
 before_script:
 - npm install -g grunt-cli
-- nohup phantomjs --webdriver=4444 > /dev/null &
-- sleep 3
 env:
   global:
   - secure: ! 'FS5tU4qtln1lrTv3PqWrQxVs3MAoJf7sbba2dISXLs7AR5IbluD2dkvrKG0H
