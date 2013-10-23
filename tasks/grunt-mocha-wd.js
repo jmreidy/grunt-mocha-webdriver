@@ -124,7 +124,7 @@ module.exports = function (grunt) {
         var testQueue = async.queue(function (browserOpts, cb) {
           var browser;
           if (opts.usePromises) {
-            browser = wd.promiseChainRemove('ondemand.saucelabs.com', 80, opts.username, opts.key);
+            browser = wd.promiseChainRemote('ondemand.saucelabs.com', 80, opts.username, opts.key);
           }
           else {
             browser = wd.remote('ondemand.saucelabs.com', 80, opts.username, opts.key);
