@@ -6,12 +6,19 @@
   "scripts": {
     "test": "grunt test"
   },
-  "repository": "",
   "author": "Justin Reidy <jmreidy@rzrsharp.net>",
-  "license": {
+  "licenses": [{
     "type": "MIT",
     "url": "https://github.com/jmreidy/grunt-mocha-sauce/blob/master/LICENSE-MIT"
+  }],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmreidy/grunt-mocha-sauce.git"
   },
+  "bugs": "https://github.com/jmreidy/grunt-mocha-sauce/issues/",
+  "keywords": [
+    "gruntplugin"
+  ],
   "dependencies": {
     "wd": "~0.2.0",
     "async": "~0.2.8",
