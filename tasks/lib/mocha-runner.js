@@ -4,6 +4,7 @@ var Module = require('module');
 var generateSauceReporter = require('./mocha-sauce-reporter');
 var fs = require('fs');
 var path = require('path');
+var domain = require('domain');
 
 module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
   //browserTitle means we're on a SL test
@@ -40,12 +41,31 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
   });
 
   try {
-    mocha.run(function(errCount) {
-      var err;
-      if (errCount !==0) {
-        err = new Error('Tests encountered ' + errCount + ' errors.');
-      }
-      onTestFinish(err);
+    if (mocha.files.length) {
+      mocha.loadFiles();
+    }
+
+    var runDomain = domain.create();
+    var mochaOptions = mocha.options;
+    var mochaRunner = new Mocha.Runner(mocha.suite);
+    var mochaReporter = new mocha._reporter(mochaRunner);
+    mochaRunner.ignoreLeaks = (mochaOptions.ignoreLeaks !== false);
+    mochaRunner.asyncOnly = mochaOptions.asyncOnly;
+    if (mochaOptions.grep) {
+      mochaRunner.grep(mochaOptions.grep, mochaOptions.invert);
+    }
+    if (mochaOptions.globals) {
+      mochaRunner.globals(mochaOptions.globals);
+    }
+    runDomain.on('error', mochaRunner.uncaught.bind(mochaRunner));
+    runDomain.run(function () {
+      mochaRunner.run(function(errCount) {
+        var err;
+        if (errCount !==0) {
+          err = new Error('Tests encountered ' + errCount + ' errors.');
+        }
+        onTestFinish(err);
+      });
     });
   } catch (e) {
     grunt.log.error("Mocha failed to run");

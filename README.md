@@ -171,6 +171,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 ### v0.9.10
  - Fix `promiseChain` on Sauce
 
+### v0.9.11
+ - Fix #8, async failures were causing grunt exit
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
