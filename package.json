@@ -1,16 +1,18 @@
 {
   "name": "grunt-mocha-webdriver",
-  "version": "0.9.10",
+  "version": "0.9.11",
   "description": "Grunt task to run Mocha tests against a Selenium grid",
   "main": "index.js",
   "scripts": {
     "test": "grunt test"
   },
   "author": "Justin Reidy <jmreidy@rzrsharp.net>",
-  "licenses": [{
-    "type": "MIT",
-    "url": "https://github.com/jmreidy/grunt-mocha-sauce/blob/master/LICENSE-MIT"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jmreidy/grunt-mocha-sauce/blob/master/LICENSE-MIT"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jmreidy/grunt-mocha-sauce.git"
