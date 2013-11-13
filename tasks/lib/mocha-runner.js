@@ -30,6 +30,7 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
 
   mocha.suite.on('pre-require', function (context, file, m) {
     this.ctx.browser = browser;
+    this.ctx.wd = opts.wd;
   });
 
   grunt.file.expand({filter: 'isFile'}, fileGroup.src).forEach(function (f) {

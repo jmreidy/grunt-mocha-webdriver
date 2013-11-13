@@ -7,7 +7,12 @@ describe('A Mocha test run by grunt-mocha-sauce', function () {
     assert.ok(this.browser);
   });
 
+  it('has wd injected into it for customizing', function () {
+    assert.equal(this.wd, require('wd'));
+  });
+
 });
+
 
 describe('A basic Webdriver example', function () {
 

@@ -43,6 +43,7 @@ module.exports = function (grunt) {
       browser.quit();
       next(err);
     };
+    opts.wd = wd;
     runner(opts, fileGroup, browser, grunt, onTestFinish);
   }
 
