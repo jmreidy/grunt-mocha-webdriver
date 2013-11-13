@@ -41,6 +41,11 @@ with the API specified in [WD.js](https://github.com/admc/wd). The default
 is to use the callback-enabled version of WD.js, but `usePromises` can be passed
 as `true` to switch to the Promise-enabled version.
 
+As of version `0.2.3` of WD.js, wd [provides the ability](https://github.com/admc/wd#adding-custom-methods)
+to add test methods to its default set of capabilities. `grunt-mocha-webdriver`
+exposes the `wd` instance in the same way that `browser` is exposed, so that
+you can easily add your own test methods to wd.
+
 Please look at this project's Gruntfile and tests to see it in action.
 
 ###Options
