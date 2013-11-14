@@ -182,6 +182,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 ### v0.9.12
  - Bump to latst sauce-tunnel
 
+### v0.9.13
+ - Bump to 0.2.3 of WD, and expose the wd instance to tests
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
