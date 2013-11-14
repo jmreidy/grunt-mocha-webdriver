@@ -1,6 +1,6 @@
 {
   "name": "grunt-mocha-webdriver",
-  "version": "0.9.11",
+  "version": "0.9.13",
   "description": "Grunt task to run Mocha tests against a Selenium grid",
   "main": "index.js",
   "scripts": {
