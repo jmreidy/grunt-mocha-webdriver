@@ -183,10 +183,10 @@ module.exports = function (grunt) {
       var testQueue = async.queue(function (browserOpts, cb) {
         var browser;
         if (opts.usePromises) {
-          browser = wd.promiseChainRemote(opts.selenium.server, opts.selenium.port);
+          browser = wd.promiseChainRemote(opts.selenium.hostname, opts.selenium.port);
         }
         else {
-          browser = wd.remote(opts.selenium.server, opts.selenium.port);
+          browser = wd.remote(opts.selenium.hostname, opts.selenium.port);
         }
         browser.browserTitle = browserOpts.browserTitle;
         browserOpts = _.extend(browserOpts, {
@@ -204,9 +204,9 @@ module.exports = function (grunt) {
       }, opts.concurrency);
 
       opts.browsers.forEach(function (browserOpts) {
-        var browserTitle = ''+browserOpts.browserName + ' ' + browserOpts.version + ' on ' + browserOpts.platform;
+        var browserTitle = ''+browserOpts.browserName + ' on Selenium';
         browserOpts.browserTitle = browserTitle;
-        grunt.log.verbose.writeln('Queueing ' + browserTitle + ' on Selenium server.');
+        grunt.log.verbose.writeln('Queueing ' + browserTitle + ' using Selenium server.');
         testQueue.push(browserOpts, function (err) {
           if (err) {
             browser_failed = true;

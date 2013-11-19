@@ -91,7 +91,7 @@ module.exports = function (grunt) {
           testName: 'selenium test',
           concurrency: 2,
           selenium: {
-            server: '127.0.0.1',
+            hostname: '127.0.0.1',
             port:   '4444'
           },
           browsers: [
@@ -108,7 +108,7 @@ module.exports = function (grunt) {
           concurrency: 2,
           usePromises: true,
           selenium: {
-            server: '127.0.0.1',
+            hostname: '127.0.0.1',
             port:   '4444'
           },
           browsers: [
