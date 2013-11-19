@@ -31,6 +31,9 @@ module.exports = function (grunt) {
       if (opts.usePhantom) {
         runTestsOnPhantom(fileGroup, opts, next);
       }
+      else if (opts.selenium) {
+        runTestsOnSelenium(fileGroup, opts, next);
+      }
       else {
         runTestsOnSaucelabs(fileGroup, opts, next);
       }
@@ -173,6 +176,58 @@ module.exports = function (grunt) {
     }
   }
 
+  function runTestsOnSelenium(fileGroup, opts, next) {
+    if (opts.browsers) {
+      grunt.log.writeln("=> Connecting to Selenium ...");
+      var browser_failed = false;
+      var testQueue = async.queue(function (browserOpts, cb) {
+        var browser;
+        if (opts.usePromises) {
+          browser = wd.promiseChainRemote(opts.selenium.server, opts.selenium.port);
+        }
+        else {
+          browser = wd.remote(opts.selenium.server, opts.selenium.port);
+        }
+        browser.browserTitle = browserOpts.browserTitle;
+        browserOpts = _.extend(browserOpts, {
+          name: opts.testName,
+          tags: opts.testTags
+        });
+
+        browser.init(browserOpts, function (err) {
+          if (err) {
+            grunt.log.error("Could not initialize browser on Selenium server");
+            return cb(false);
+          }
+          runTestsForBrowser(opts, fileGroup, browser, cb);
+        });
+      }, opts.concurrency);
+
+      opts.browsers.forEach(function (browserOpts) {
+        var browserTitle = ''+browserOpts.browserName + ' ' + browserOpts.version + ' on ' + browserOpts.platform;
+        browserOpts.browserTitle = browserTitle;
+        grunt.log.verbose.writeln('Queueing ' + browserTitle + ' on Selenium server.');
+        testQueue.push(browserOpts, function (err) {
+          if (err) {
+            browser_failed = true;
+          }
+          grunt.log.verbose.writeln('%s test complete, %s tests remaining', browserTitle, testQueue.length());
+        });
+      });
+
+      testQueue.drain = function () {
+        var err;
+        if (browser_failed) {
+          err = new Error('One or more tests on Selenium failed.');
+        }
+        next(err);
+      };
+      
+    }
+    else {
+      grunt.log.writeln('No browsers configured for running on Saucelabs.');
+    }
+  }
 };
 
 //wd.js monkey patch for clearer errors
