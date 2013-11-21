@@ -90,10 +90,8 @@ module.exports = function (grunt) {
         options: {
           testName: 'selenium test',
           concurrency: 2,
-          selenium: {
-            hostname: '127.0.0.1',
-            port:   '4444'
-          },
+          hostname: '127.0.0.1',
+          port:   '4444',
           browsers: [
             {browserName: 'firefox'},
             // {browserName: 'internet explorer', platform: 'Windows 7', version: '8'},
@@ -107,10 +105,8 @@ module.exports = function (grunt) {
           testName: 'selenium promises test',
           concurrency: 2,
           usePromises: true,
-          selenium: {
-            hostname: '127.0.0.1',
-            port:   '4444'
-          },
+          hostname: '127.0.0.1',
+          port:   '4444',
           browsers: [
             {browserName: 'firefox'},
             {browserName: 'chrome'}
