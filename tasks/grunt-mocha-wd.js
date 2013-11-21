@@ -169,17 +169,17 @@ module.exports = function (grunt) {
   }
 
   function startBrowserTests(testQueue, mode, browserOpts) {
-          var browserTitle = ''+browserOpts.browserName;
-          if (browserOpts.version) {
-            browserTitle = browserTitle + ' ' + browserOpts.version;
-          }
-          if (browserOpts.platform) {
-            browserTitle = browserTitle + ' on ' + browserOpts.platform;
-          }
-          browserOpts.browserTitle = browserTitle;
-          grunt.log.verbose.writeln('Queueing ' + browserTitle + ' - ' + mode);
-          pushToQueue(testQueue, browserOpts, browserTitle);
-        }
+    var browserTitle = ''+browserOpts.browserName;
+    if (browserOpts.version) {
+      browserTitle = browserTitle + ' ' + browserOpts.version;
+    }
+    if (browserOpts.platform) {
+      browserTitle = browserTitle + ' on ' + browserOpts.platform;
+    }
+    browserOpts.browserTitle = browserTitle;
+    grunt.log.verbose.writeln('Queueing ' + browserTitle + ' - ' + mode);
+    pushToQueue(testQueue, browserOpts, browserTitle);
+  }
 
   function runTestsOnSaucelabs(fileGroup, opts, next) {
     if (opts.browsers) {
