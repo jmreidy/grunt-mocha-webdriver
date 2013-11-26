@@ -141,11 +141,16 @@ module.exports = function (grunt) {
     browser.browserTitle = browserOpts.browserTitle;
     browser.mode = mode;
     
-    ['name', 'tags', 'tunnel-identifier'].forEach(function(prop) {
-      if (opts[prop]) {
-        browserOpts[prop] = opts[prop];
-      }
-    });
+    browser.mode = mode;
+    if (opts.testName) {
+      browserOpts.name = opts.testName;
+    }
+    if (opts.testTags) {
+      browserOpts.tags = opts.testTags;
+    }
+    if (opts.identifier) {
+      browserOpts['tunnel-identifier'] = opts.identifier;
+    }
 
     browser.init(browserOpts, function (err) {
       if (err) {
