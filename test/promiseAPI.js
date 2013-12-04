@@ -9,17 +9,12 @@ describe('Promise-enabled WebDriver', function () {
       var browser = this.browser;
       browser.get('http://google.com')
         .elementByName('q')
-        .then(function (el) {
-          searchBox = el;
-          return searchBox.type('webdriver');
-        })
-        .then(function () {
-          return searchBox.getAttribute('value');
-        })
+        .type('webdriver')
+        .getAttribute('value')
         .then(function (val) {
           return assert.equal(val, 'webdriver');
         })
-        .then(done, done);
+        .nodeify(done);
     });
   });
 });
