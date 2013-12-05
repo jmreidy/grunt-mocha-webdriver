@@ -46,7 +46,15 @@ to add test methods to its default set of capabilities. `grunt-mocha-webdriver`
 exposes the `wd` instance in the same way that `browser` is exposed, so that
 you can easily add your own test methods to wd.
 
-Please look at this project's Gruntfile and tests to see it in action.
+Also, Mocha options are exposed to tests. This is especially helpful if you want to reuse the
+defined Mocha timeout for your Webdriver tests. For example you can do this in your
+Webdriver based E2E tests:
+
+```js
+this.browser.waitForElementByCss('.aClass', this.mochaOptions.timeout, cb);
+```
+
+Please look at this project's Gruntfile and tests to see all that in action.
 
 ###Options
 The usual Mocha options are passed through this task to a new Mocha instance.
@@ -184,6 +192,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 
 ### v0.9.13
  - Bump to 0.2.3 of WD, and expose the wd instance to tests
+
+ ### v0.9.14
+ - Bump to 1.15.1 of Mocha, and expose mocha options to tests
 
 ##License
 Copyright (c) 2013 Justin Reidy
