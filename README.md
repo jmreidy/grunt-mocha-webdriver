@@ -193,7 +193,7 @@ unit tests for any new or changed functionality. Lint and test your code using `
 ### v0.9.13
  - Bump to 0.2.3 of WD, and expose the wd instance to tests
 
- ### v0.9.14
+### v0.9.14
  - Bump to 1.15.1 of Mocha, and expose mocha options to tests
 
 ##License
