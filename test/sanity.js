@@ -11,6 +11,11 @@ describe('A Mocha test run by grunt-mocha-sauce', function () {
     assert.equal(this.wd, require('wd'));
   });
 
+  it('has mochaOptions injected into it for reuse', function () {
+    assert.equal(this.mochaOptions.timeout,  1000 * 60);
+    assert.equal(this.mochaOptions.reporter, 'spec');
+  });
+
 });
 
 
