@@ -132,6 +132,13 @@ Type: [String]
 
 An array of tags to associate with the test, as reported to Sauce Labs.
 
+####prerun
+Type: [String]
+
+Sauce allows users to provide an URL to an executable file, which they will download and run for them before tests start.
+
+This can be extremely useful if you want to modify some Windows registry settings through a .bat file to enable HTTPS mode. See http://saucelabs.com/docs/additional-config#prerun and https://github.com/alexglow/Sauce-Labs-example-tests/tree/master/prerun
+
 ####browsers
 Type: [Object]
 

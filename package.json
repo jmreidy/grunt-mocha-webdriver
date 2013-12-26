@@ -1,6 +1,6 @@
 {
   "name": "grunt-mocha-webdriver",
-  "version": "0.9.14",
+  "version": "0.9.15",
   "description": "Grunt task to run Mocha tests against a Selenium grid",
   "main": "index.js",
   "scripts": {
@@ -24,11 +24,11 @@
   "dependencies": {
     "wd": "~0.2.3",
     "async": "~0.2.8",
-    "mocha": "~1.15.1",
+    "mocha": "~1.16.2",
     "sauce-tunnel": "~1.1"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-jshint": "~0.8.0",
     "phantomjs": "~1.9.2-1"
   },
   "peerDependencies": {
