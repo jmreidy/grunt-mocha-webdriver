@@ -24,7 +24,8 @@ module.exports = function (grunt) {
       identifier: Math.floor((new Date()).getTime() / 1000 - 1230768000).toString(),
       concurrency: 1,
       testName: "",
-      testTags: []
+      testTags: [],
+      prerun: null
     });
 
     grunt.util.async.forEachSeries(this.files, function (fileGroup, next) {
@@ -133,7 +134,8 @@ module.exports = function (grunt) {
           browserOpts = _.extend(browserOpts, {
             name: opts.testName,
             tags: opts.testTags,
-            'tunnel-identifier': opts.identifier
+            'tunnel-identifier': opts.identifier,
+            'prerun': opts.prerun
           });
 
           browser.init(browserOpts, function (err) {
