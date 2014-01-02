@@ -38,7 +38,9 @@ module.exports = function (browser) {
           console.log(color('fail', i + '\n\t' + failInfo[i].join('\n\t')));
         }
       }
-      console.log('Test video at: http://saucelabs.com/tests/' + browser.sessionID);
+      if (browser.mode === 'saucelabs') {
+        console.log('Test video at: http://saucelabs.com/tests/' + browser.sessionID);
+      }
       console.log();
     });
   };
