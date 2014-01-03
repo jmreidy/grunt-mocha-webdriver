@@ -31,6 +31,9 @@ module.exports = function (grunt) {
       if (opts.usePhantom) {
         runTestsOnPhantom(fileGroup, opts, next);
       }
+      else if (opts.hostname) {
+        runTestsOnSelenium(fileGroup, opts, next);
+      }
       else {
         runTestsOnSaucelabs(fileGroup, opts, next);
       }
@@ -107,6 +110,82 @@ module.exports = function (grunt) {
     process.stdout.on('data', onPhantomData);
   }
 
+  /**
+   * Extracts wd connection params from grunt options
+   * 
+   * Utility function that returns named params 
+   * that can be used by wd.remote or wd.promiseChainRemote
+   */
+  function extractConnectionInfo(opts) {
+    var params = {};
+    params.hostname = opts.hostname || 'ondemand.saucelabs.com';
+    params.port     = opts.port || 80;
+    if (opts.key) {
+      params.accessKey = opts.key;
+    }
+    ['auth', 'username'].forEach(function(prop) {
+      if (opts[prop]) {
+        params[prop] = opts[prop];
+      }
+    });
+    return params;
+  }
+
+  /**
+   * Init a browser
+   */
+  function initBrowser(browserOpts, opts, mode, fileGroup, cb) {
+    var funcName = opts.usePromises ? 'promiseChainRemote': 'remote',
+    browser = wd[funcName](extractConnectionInfo(opts));
+
+    browser.browserTitle = browserOpts.browserTitle;
+    browser.mode = mode;
+    
+    browser.mode = mode;
+    if (opts.testName) {
+      browserOpts.name = opts.testName;
+    }
+    if (opts.testTags) {
+      browserOpts.tags = opts.testTags;
+    }
+    if (opts.identifier) {
+      browserOpts['tunnel-identifier'] = opts.identifier;
+    }
+
+    browser.init(browserOpts, function (err) {
+      if (err) {
+        grunt.log.error('Could not initialize browser - ' + mode);
+        return cb(false);
+      }
+      runTestsForBrowser(opts, fileGroup, browser, cb);
+    });
+  }
+
+  // used by runTestsOnSaucelabs or runTestsOnSeleni
+  var browser_failed = false;
+
+  function pushToQueue(testQueue, browserOpts, browserTitle) {
+    testQueue.push(browserOpts, function (err) {
+      if (err) {
+        browser_failed = true;
+      }
+      grunt.log.verbose.writeln('%s test complete, %s tests remaining', browserTitle, testQueue.length());
+    });
+  }
+
+  function startBrowserTests(testQueue, mode, browserOpts) {
+    var browserTitle = ''+browserOpts.browserName;
+    if (browserOpts.version) {
+      browserTitle = browserTitle + ' ' + browserOpts.version;
+    }
+    if (browserOpts.platform) {
+      browserTitle = browserTitle + ' on ' + browserOpts.platform;
+    }
+    browserOpts.browserTitle = browserTitle;
+    grunt.log.verbose.writeln('Queueing ' + browserTitle + ' - ' + mode);
+    pushToQueue(testQueue, browserOpts, browserTitle);
+  }
+
   function runTestsOnSaucelabs(fileGroup, opts, next) {
     if (opts.browsers) {
       var tunnel = new SauceTunnel(opts.username, opts.key, opts.identifier, true, opts.tunnelTimeout);
@@ -120,41 +199,17 @@ module.exports = function (grunt) {
         }
         grunt.log.ok("Connected to Saucelabs.");
 
-        var browser_failed = false;
         var testQueue = async.queue(function (browserOpts, cb) {
-          var browser;
-          if (opts.usePromises) {
-            browser = wd.promiseChainRemote('ondemand.saucelabs.com', 80, opts.username, opts.key);
-          }
-          else {
-            browser = wd.remote('ondemand.saucelabs.com', 80, opts.username, opts.key);
-          }
-          browser.browserTitle = browserOpts.browserTitle;
-          browserOpts = _.extend(browserOpts, {
-            name: opts.testName,
-            tags: opts.testTags,
-            'tunnel-identifier': opts.identifier
-          });
-
-          browser.init(browserOpts, function (err) {
-            if (err) {
-              grunt.log.error("Could not initialize browser on Saucelabs");
-              return cb(false);
-            }
-            runTestsForBrowser(opts, fileGroup, browser, cb);
-          });
+          // browserOpts, opts, usePromises, errorMsg, fileGroup, cb
+          initBrowser(browserOpts,
+                      opts,
+                      "saucelabs",
+                      fileGroup,
+                      cb);
         }, opts.concurrency);
 
-        opts.browsers.forEach(function (browserOpts) {
-          var browserTitle = ''+browserOpts.browserName + ' ' + browserOpts.version + ' on ' + browserOpts.platform;
-          browserOpts.browserTitle = browserTitle;
-          grunt.log.verbose.writeln('Queueing ' + browserTitle + ' on Saucelabs.');
-          testQueue.push(browserOpts, function (err) {
-            if (err) {
-              browser_failed = true;
-            }
-            grunt.log.verbose.writeln('%s test complete, %s tests remaining', browserTitle, testQueue.length());
-          });
+        opts.browsers.forEach(function(browserOpts) {
+          startBrowserTests(testQueue, 'saucelabs', browserOpts);
         });
 
         testQueue.drain = function () {
@@ -173,6 +228,35 @@ module.exports = function (grunt) {
     }
   }
 
+  function runTestsOnSelenium(fileGroup, opts, next) {
+    if (opts.browsers) {
+      grunt.log.writeln("=> Connecting to Selenium ...");
+      
+      var testQueue = async.queue(function (browserOpts, cb) {
+        var browser = initBrowser(browserOpts,
+                                  opts,
+                                  "selenium",
+                                  fileGroup,
+                                  cb);
+      }, opts.concurrency);
+
+      opts.browsers.forEach(function (browserOpts) {
+        startBrowserTests(testQueue, 'selenium', browserOpts);
+      });
+
+      testQueue.drain = function () {
+        var err;
+        if (browser_failed) {
+          err = new Error('One or more tests on Selenium failed.');
+        }
+        next(err);
+      };
+      
+    }
+    else {
+      grunt.log.writeln('No browsers configured for running on Saucelabs.');
+    }
+  }
 };
 
 //wd.js monkey patch for clearer errors
