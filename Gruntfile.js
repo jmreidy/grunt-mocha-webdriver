@@ -84,6 +84,34 @@ module.exports = function (grunt) {
             {browserName: 'chrome', platform: 'Windows 7', version: ''}
           ]
         }
+      },
+      selenium: {
+        src: ['test/sanity.js'],
+        options: {
+          testName: 'selenium test',
+          concurrency: 2,
+          hostname: '127.0.0.1',
+          port:   '4444',
+          browsers: [
+            {browserName: 'firefox'},
+            // {browserName: 'internet explorer', platform: 'Windows 7', version: '8'},
+            {browserName: 'chrome'}
+          ]
+        }
+      },
+      seleniumPromises: {
+        src: ['test/promiseAPi.js'],
+        options: {
+          testName: 'selenium promises test',
+          concurrency: 2,
+          usePromises: true,
+          hostname: '127.0.0.1',
+          port:   '4444',
+          browsers: [
+            {browserName: 'firefox'},
+            {browserName: 'chrome'}
+          ]
+        }
       }
     }
   });
@@ -93,6 +121,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task.
-  grunt.registerTask('test', ['mochaWebdriver']);
+  grunt.registerTask('test', [  'mochaWebdriver:phantom',
+                                'mochaWebdriver:promises',
+                                'mochaWebdriver:requires',
+                                'mochaWebdriver:sauce',
+                                'mochaWebdriver:saucePromises'
+                              ]);
+  grunt.registerTask('testSelenium', ['mochaWebdriver:selenium', 'mochaWebdriver:seleniumPromises']); 
   grunt.registerTask('default', ['jshint', 'test']);
 };
