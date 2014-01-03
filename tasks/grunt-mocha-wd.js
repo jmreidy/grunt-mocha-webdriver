@@ -112,8 +112,8 @@ module.exports = function (grunt) {
 
   /**
    * Extracts wd connection params from grunt options
-   * 
-   * Utility function that returns named params 
+   *
+   * Utility function that returns named params
    * that can be used by wd.remote or wd.promiseChainRemote
    */
   function extractConnectionInfo(opts) {
@@ -140,7 +140,7 @@ module.exports = function (grunt) {
 
     browser.browserTitle = browserOpts.browserTitle;
     browser.mode = mode;
-    
+
     browser.mode = mode;
     if (opts.testName) {
       browserOpts.name = opts.testName;
@@ -162,12 +162,12 @@ module.exports = function (grunt) {
   }
 
   // used by runTestsOnSaucelabs or runTestsOnSeleni
-  var browser_failed = false;
+  var browserFailed = false;
 
   function pushToQueue(testQueue, browserOpts, browserTitle) {
     testQueue.push(browserOpts, function (err) {
       if (err) {
-        browser_failed = true;
+        browserFailed = true;
       }
       grunt.log.verbose.writeln('%s test complete, %s tests remaining', browserTitle, testQueue.length());
     });
@@ -214,7 +214,7 @@ module.exports = function (grunt) {
 
         testQueue.drain = function () {
           var err;
-          if (browser_failed) {
+          if (browserFailed) {
             err = new Error('One or more tests on Sauce Labs failed.');
           }
           tunnel.stop(function () {
@@ -231,7 +231,7 @@ module.exports = function (grunt) {
   function runTestsOnSelenium(fileGroup, opts, next) {
     if (opts.browsers) {
       grunt.log.writeln("=> Connecting to Selenium ...");
-      
+
       var testQueue = async.queue(function (browserOpts, cb) {
         var browser = initBrowser(browserOpts,
                                   opts,
@@ -246,12 +246,12 @@ module.exports = function (grunt) {
 
       testQueue.drain = function () {
         var err;
-        if (browser_failed) {
+        if (browserFailed) {
           err = new Error('One or more tests on Selenium failed.');
         }
         next(err);
       };
-      
+
     }
     else {
       grunt.log.writeln('No browsers configured for running on Saucelabs.');
