@@ -88,7 +88,6 @@ module.exports = function (grunt) {
       saucePromises: {
         src: ['test/promiseAPi.js'],
         options: {
-          tunnelFlags: ['--debug', '-l', 'sauce_connect.log.custom'],
           testName: 'sauce promises test',
           concurrency: 2,
           usePromises: true,
