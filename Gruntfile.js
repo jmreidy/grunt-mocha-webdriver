@@ -72,9 +72,23 @@ module.exports = function (grunt) {
           ]
         }
       },
+      tunnelOptions: {
+        src: ['test/tunnelOptions.js'],
+        options: {
+          // changing log file to sauce_connect.log.custom
+          tunnelFlags: ['-l', 'sauce_connect.log.custom'],
+          testName: 'sauce tunnel flags test',
+          concurrency: 2,
+          usePromises: true,
+          browsers: [
+            {browserName: 'internet explorer', platform: 'Windows 7', version: '9'}
+          ]
+        }
+      },
       saucePromises: {
         src: ['test/promiseAPi.js'],
         options: {
+          tunnelFlags: ['--debug', '-l', 'sauce_connect.log.custom'],
           testName: 'sauce promises test',
           concurrency: 2,
           usePromises: true,
