@@ -33,7 +33,7 @@ the `phantomPort` option.
 
 ###Using grunt-mocha-webdriver with your own Selenium server
 In version 0.9.15 and later, You can run your tests against your own Selenium server instance.
-In order to run tests against your Selenium server instance, use ``hostname`` and ``port`` options.
+To do so, use ``hostname`` and ``port`` options.
 Don't forget to remove ``username`` and ``key``.
 Note that the Selenium server should be started and ready before starting the tests.
 
@@ -118,7 +118,7 @@ Type: String
 If specified, it will connect that selenium server instead of ondemand.saucelabs.com.
 
 ####port
-Type: Int (Default: null)
+Type: Int
 
 Selenium server port. Should be used in conjonction with ``hostname``.
 
