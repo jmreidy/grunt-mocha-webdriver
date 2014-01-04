@@ -139,6 +139,7 @@ module.exports = function (grunt) {
                                 'mochaWebdriver:promises',
                                 'mochaWebdriver:requires',
                                 'mochaWebdriver:sauce',
+                                'mochaWebdriver:tunnelOptions',
                                 'mochaWebdriver:saucePromises'
                               ]);
   grunt.registerTask('testSelenium', ['mochaWebdriver:selenium', 'mochaWebdriver:seleniumPromises']); 
