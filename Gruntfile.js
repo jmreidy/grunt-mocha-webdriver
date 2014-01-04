@@ -8,7 +8,7 @@ module.exports = function (grunt) {
       options: {
         curly: true,
         eqeqeq: true,
-        es5: true,
+        //es5: true, now by default in 0.8
         immed: true,
         indent: 2,
         latedef: true,
