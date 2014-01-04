@@ -34,7 +34,7 @@ module.exports = function (browser) {
       }
       if (failures) {
         console.log(color('fail', '%d %s'), failures, 'tests failed.');
-        for(i in failInfo) {
+        for(var i in failInfo) {
           console.log(color('fail', i + '\n\t' + failInfo[i].join('\n\t')));
         }
       }
