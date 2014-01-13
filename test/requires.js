@@ -1,3 +1,4 @@
+/*global globalVar:false*/
 var assert = require('assert');
 
 describe('A Mocha test run by grunt-mocha-sauce', function () {

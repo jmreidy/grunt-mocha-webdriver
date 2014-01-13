@@ -8,7 +8,7 @@ module.exports = function (grunt) {
       options: {
         curly: true,
         eqeqeq: true,
-        es5: true,
+        //es5: true, now by default in 0.8
         immed: true,
         indent: 2,
         latedef: true,
@@ -72,6 +72,19 @@ module.exports = function (grunt) {
           ]
         }
       },
+      tunnelOptions: {
+        src: ['test/tunnelOptions.js'],
+        options: {
+          // changing log file to sauce_connect.log.custom
+          tunnelFlags: ['-l', 'sauce_connect.log.custom'],
+          testName: 'sauce tunnel flags test',
+          concurrency: 2,
+          usePromises: true,
+          browsers: [
+            {browserName: 'internet explorer', platform: 'Windows 7', version: '9'}
+          ]
+        }
+      },
       saucePromises: {
         src: ['test/promiseAPi.js'],
         options: {
@@ -125,6 +138,7 @@ module.exports = function (grunt) {
                                 'mochaWebdriver:promises',
                                 'mochaWebdriver:requires',
                                 'mochaWebdriver:sauce',
+                                'mochaWebdriver:tunnelOptions',
                                 'mochaWebdriver:saucePromises'
                               ]);
   grunt.registerTask('testSelenium', ['mochaWebdriver:selenium', 'mochaWebdriver:seleniumPromises']); 
