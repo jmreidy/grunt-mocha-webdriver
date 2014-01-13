@@ -31,6 +31,12 @@ to run tests against phantom, simply add the `usePhantom` flag to the options ha
 The plugin defaults to hitting port 4444, but you can specify your own port via
 the `phantomPort` option.
 
+###Using grunt-mocha-webdriver with your own Selenium server
+ In version 0.9.15 and later, You can run your tests against your own Selenium server instance.
+ To do so, use ``hostname`` and ``port`` options.
+ Don't forget to remove ``username`` and ``key``.
+ Note that the Selenium server should be started and ready before starting the tests.
+
 ##Documentation
 Run this task with the `mochaWebdriver` grunt command. For this plugin, the Grunt
 `src` property will specify which test files should be run with Mocha in
@@ -106,6 +112,16 @@ Type: String
 
 The Sauce Labs API key to use. Defaults to value of env var `SAUCE_ACCESS_KEY`.
 
+####hostname
+Type: String
+ 
+If specified, it will connect that selenium server instead of ondemand.saucelabs.com.
+ 
+####port
+Type: Int
+
+Selenium server port. Should be used in conjonction with ``hostname``.
+
 ####identifier
 Type: Number
 
@@ -117,10 +133,10 @@ Type: Int
 
 The number of concurrent browser sessions to spin up on Sauce Labs. Defaults to 1.
 
-####tunnelTimeout
-Type: Number
-
-Time to wait before closing all tunnels.
+####tunnelFlags
+Type: Array
+An array of option flags for Sauce Connect. See the list of available options
+ [here](https://saucelabs.com/docs/connect#connect-flags).
 
 ####testName
 Type: String
@@ -137,8 +153,8 @@ Type: [Object]
 
 An array of objects specifying which browser options should be passed to Sauce Labs.
 Unless a test is run against Phantom (e.g. `usePhantom` is true), this option
-*must* be specified. Each browser hash should specify: `browserName`, `platform`,
-and `version`.
+*must* be specified. Each browser hash should specify: `browserName`. For saucelabs tests, `platform`,
+and `version` are also required.
 
 ##Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add
