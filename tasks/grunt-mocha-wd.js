@@ -24,7 +24,8 @@ module.exports = function (grunt) {
       identifier: Math.floor((new Date()).getTime() / 1000 - 1230768000).toString(),
       concurrency: 1,
       testName: "",
-      testTags: []
+      testTags: [],
+      tunnelFlags: null
     });
 
     grunt.util.async.forEachSeries(this.files, function (fileGroup, next) {
@@ -188,7 +189,7 @@ module.exports = function (grunt) {
 
   function runTestsOnSaucelabs(fileGroup, opts, next) {
     if (opts.browsers) {
-      var tunnel = new SauceTunnel(opts.username, opts.key, opts.identifier, true, opts.tunnelTimeout);
+      var tunnel = new SauceTunnel(opts.username, opts.key, opts.identifier, true, opts.tunnelFlags);
       configureLogEvents(tunnel);
 
       grunt.log.writeln("=> Connecting to Saucelabs ...");
