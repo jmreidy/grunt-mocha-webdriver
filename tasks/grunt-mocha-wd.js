@@ -33,7 +33,7 @@ module.exports = function (grunt) {
       if (opts.usePhantom) {
         runTestsOnPhantom(fileGroup, opts, next);
       }
-      else if (opts.hostname && !secureCommands) {
+      else if (opts.hostname && !opts.secureCommands) {
         runTestsOnSelenium(fileGroup, opts, next);
       }
       else {
@@ -119,11 +119,11 @@ module.exports = function (grunt) {
    * that can be used by wd.remote or wd.promiseChainRemote
    */
   function extractConnectionInfo(opts) {
+    var params = {};
     var defaultServer = opts.secureCommands ?
-                          { hostname: '127.0.0.1', port: 4445 } :
-                          { hostname: 'ondemand.saucelabs.com', port: 80 },
-        params = {};
-    
+                        { hostname: '127.0.0.1', port: 4445 } :
+                        { hostname: 'ondemand.saucelabs.com', port: 80 };
+
     params.hostname = opts.hostname || defaultServer.hostname;
     params.port     = opts.port || defaultServer.port;
     if (opts.key) {

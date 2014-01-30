@@ -83,7 +83,7 @@ module.exports = function (grunt) {
             {browserName: 'internet explorer', platform: 'Windows 7', version: '9'}
           ]
         }
-       },
+      },
       saucePromises: {
         src: ['test/promiseAPi.js'],
         options: {
