@@ -114,9 +114,9 @@ The Sauce Labs API key to use. Defaults to value of env var `SAUCE_ACCESS_KEY`.
 
 ####hostname
 Type: String
- 
+
 If specified, it will connect that selenium server instead of ondemand.saucelabs.com.
- 
+
 ####port
 Type: Int
 
@@ -214,6 +214,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 
 ### v0.9.15
  - Add Selenium support (thanks to @saadtazi)
+
+### v0.9.16
+ - `tunnelFlags` options, courtesy of @saadtazi
 
 ##License
 Copyright (c) 2013 Justin Reidy
