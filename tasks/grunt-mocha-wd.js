@@ -25,14 +25,15 @@ module.exports = function (grunt) {
       concurrency: 1,
       testName: "",
       testTags: [],
-      tunnelFlags: null
+      tunnelFlags: null,
+      secureCommands: false
     });
 
     grunt.util.async.forEachSeries(this.files, function (fileGroup, next) {
       if (opts.usePhantom) {
         runTestsOnPhantom(fileGroup, opts, next);
       }
-      else if (opts.hostname) {
+      else if (opts.hostname && !secureCommands) {
         runTestsOnSelenium(fileGroup, opts, next);
       }
       else {
@@ -118,9 +119,13 @@ module.exports = function (grunt) {
    * that can be used by wd.remote or wd.promiseChainRemote
    */
   function extractConnectionInfo(opts) {
-    var params = {};
-    params.hostname = opts.hostname || 'ondemand.saucelabs.com';
-    params.port     = opts.port || 80;
+    var defaultServer = opts.secureCommands ?
+                          { hostname: '127.0.0.1', port: 4445 } :
+                          { hostname: 'ondemand.saucelabs.com', port: 80 },
+        params = {};
+    
+    params.hostname = opts.hostname || defaultServer.hostname;
+    params.port     = opts.port || defaultServer.port;
     if (opts.key) {
       params.accessKey = opts.key;
     }
@@ -138,7 +143,6 @@ module.exports = function (grunt) {
   function initBrowser(browserOpts, opts, mode, fileGroup, cb) {
     var funcName = opts.usePromises ? 'promiseChainRemote': 'remote',
     browser = wd[funcName](extractConnectionInfo(opts));
-
     browser.browserTitle = browserOpts.browserTitle;
     browser.mode = mode;
 

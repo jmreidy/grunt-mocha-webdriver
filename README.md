@@ -112,10 +112,17 @@ Type: String
 
 The Sauce Labs API key to use. Defaults to value of env var `SAUCE_ACCESS_KEY`.
 
+####secureCommands
+Type: Boolean (Default: false)
+
+If true, it will use saucelabs, with default `hostname` set to `127.0.0.1` and `port` set to `4445`
+in order to send selenium commands through Sauce Connect tunnel (more info 
+[here](https://saucelabs.com/docs/connect#selenium-relay)).
+
 ####hostname
 Type: String
 
-If specified, it will connect that selenium server instead of ondemand.saucelabs.com.
+If specified, it will connect that selenium server instead of `ondemand.saucelabs.com`.
 
 ####port
 Type: Int

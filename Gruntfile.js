@@ -97,6 +97,17 @@ module.exports = function (grunt) {
           ]
         }
       },
+      sauceSecure: {
+        src: ['test/promiseAPi.js'],
+        options: {
+          testName: 'sauce secure commands test',
+          secureCommands: true,
+          usePromises: true,
+          browsers: [
+            {browserName: 'chrome', platform: 'Windows 7', version: ''}
+          ]
+        }
+      },
       selenium: {
         src: ['test/sanity.js'],
         options: {
