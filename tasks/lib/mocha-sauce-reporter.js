@@ -22,7 +22,11 @@ module.exports = function (browser) {
     runner.on('fail', function (e) {
       failures++;
       failInfo[runner.suite.title] = failInfo[runner.suite.title] || [];
-      failInfo[runner.suite.title].push(e.title + (e.err.message ? (': ' + e.err.message) : ''));
+      failInfo[runner.suite.title].push(
+        e.title + 
+        (e.err.message ? (': ' + e.err.message) : '') + 
+        (e.err.stack ? e.err.stack : '')
+	  );      
     });
 
     runner.on('end', function(){
