@@ -26,7 +26,7 @@ module.exports = function (browser) {
         e.title + 
         (e.err.message ? (': ' + e.err.message) : '') + 
         (e.err.stack ? e.err.stack : '')
-	  );      
+      );      
     });
 
     runner.on('end', function(){
