@@ -43,6 +43,19 @@ module.exports = function (grunt) {
           phantomPort: 5555
         }
       },
+      phantomCapabilities: {
+        src: ['test/phantom-capabilities.js'],
+        options: {
+          testName: 'phantom capabilities test',
+          usePhantom: true,
+          phantomPort: 5555,
+          usePromises: true,
+          // see https://github.com/detro/ghostdriver
+          phantomCapabilities: {
+            'phantomjs.page.settings.userAgent': 'customUserAgent'
+          }
+        }
+      },
       promises: {
         src: ['test/promiseAPi.js'],
         options: {
@@ -145,6 +158,7 @@ module.exports = function (grunt) {
 
   // Default task.
   grunt.registerTask('test', [  'mochaWebdriver:phantom',
+                                'mochaWebdriver:phantomCapabilities',
                                 'mochaWebdriver:promises',
                                 'mochaWebdriver:requires',
                                 'mochaWebdriver:sauce',
