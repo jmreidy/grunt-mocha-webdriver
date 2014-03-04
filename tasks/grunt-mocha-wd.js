@@ -26,7 +26,8 @@ module.exports = function (grunt) {
       testName: "",
       testTags: [],
       tunnelFlags: null,
-      secureCommands: false
+      secureCommands: false,
+      phantomCapabilities: {}
     });
 
     grunt.util.async.forEachSeries(this.files, function (fileGroup, next) {
@@ -67,7 +68,7 @@ module.exports = function (grunt) {
   function runTestsOnPhantom(fileGroup, opts, next) {
     var browser;
     var phantomPort = opts.phantomPort? opts.phantomPort : 4444;
-
+    var phantomCapabilities = opts.phantomCapabilities;
     if (opts.usePromises) {
       browser = wd.promiseChainRemote({port: phantomPort});
     }
@@ -78,7 +79,7 @@ module.exports = function (grunt) {
 
     startPhantom(phantomPort, opts.ignoreSslErrors, function (err, phantomProc) {
       if (err) { return next(err); }
-      browser.init({}, function () {
+      browser.init(phantomCapabilities, function () {
         runTestsForBrowser(opts, fileGroup, browser, function (err) {
           phantomProc.on('close', function () {
             grunt.log.writeln('Phantom exited.');

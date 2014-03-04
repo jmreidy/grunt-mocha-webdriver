@@ -84,6 +84,12 @@ Type: Int (Default: 4444)
 if testing against PhantomJS with the `usePhantom` flag, specify the port
 to test against.
 
+####phantomCapabilities
+Type: Object (Default: {})
+
+if testing against PhantomJS with the `usePhantom` flag, specify the
+[browser capabilities](https://github.com/detro/ghostdriver#what-extra-webdriver-capabilities-ghostdriver-offers).
+
 ####usePromises
 Type: Boolean
 

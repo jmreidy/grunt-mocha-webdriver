@@ -1,7 +1,7 @@
 var assert = require('assert');
 var async = require('async');
 
-describe('A Mocha test run by grunt-mocha-sauce', function () {
+describe('A Mocha test run by grunt-mocha-webdriver', function () {
 
   it('has a browser injected into it', function () {
     assert.ok(this.browser);
