@@ -10,8 +10,7 @@ describe('Phantomjs browser', function () {
     browser.get('http://beta.saadtazi.com/api/echo/headers.html')
       .elementsByCssSelector('.grunt-mocha-webdriver-header')
       .then(function(elts) {
-        assert.equal(elts.length, 1);
-        return browser;
+        return assert.equal(elts.length, 1);
       })
       .then(done, done);
   });
