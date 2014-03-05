@@ -11,6 +11,7 @@ describe('Phantomjs browser', function () {
       .elementsByCssSelector('.grunt-mocha-webdriver-header')
       .then(function(elts) {
         assert.equal(elts.length, 1);
+        return browser;
       })
       .then(done, done);
   });
