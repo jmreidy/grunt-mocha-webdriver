@@ -46,8 +46,12 @@ module.exports = function (grunt) {
 
   function runTestsForBrowser(opts, fileGroup, browser, next) {
     var onTestFinish = function(err) {
-      browser.quit();
-      next(err);
+      if (opts.usePromises) {
+        browser.quit().nodeify(next);
+      }
+      else {
+        browser.quit(next);
+      }
     };
     opts.wd = wd;
     runner(opts, fileGroup, browser, grunt, onTestFinish);
@@ -142,8 +146,8 @@ module.exports = function (grunt) {
    * Init a browser
    */
   function initBrowser(browserOpts, opts, mode, fileGroup, cb) {
-    var funcName = opts.usePromises ? 'promiseChainRemote': 'remote',
-    browser = wd[funcName](extractConnectionInfo(opts));
+    var funcName = opts.usePromises ? 'promiseChainRemote': 'remote';
+    var browser = wd[funcName](extractConnectionInfo(opts));
     browser.browserTitle = browserOpts.browserTitle;
     browser.mode = mode;
 
