@@ -52,7 +52,7 @@ module.exports = function (grunt) {
           usePromises: true,
           // see https://github.com/detro/ghostdriver
           phantomCapabilities: {
-            'phantomjs.page.settings.userAgent': 'customUserAgent'
+            'phantomjs.page.customHeaders.grunt-mocha-webdriver-header': 'custom value'
           }
         }
       },
