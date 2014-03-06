@@ -12,7 +12,7 @@ describe('A Mocha test run by grunt-mocha-webdriver', function () {
   });
 
   it('has mochaOptions injected into it for reuse', function () {
-    assert.equal(this.mochaOptions.timeout,  1000 * 60);
+    assert.equal(this.mochaOptions.timeout,  1000 * 60 * 3);
   });
 
 });
