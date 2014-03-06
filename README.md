@@ -122,7 +122,7 @@ The Sauce Labs API key to use. Defaults to value of env var `SAUCE_ACCESS_KEY`.
 Type: Boolean (Default: false)
 
 If true, it will use saucelabs, with default `hostname` set to `127.0.0.1` and `port` set to `4445`
-in order to send selenium commands through Sauce Connect tunnel (more info 
+in order to send selenium commands through Sauce Connect tunnel (more info
 [here](https://saucelabs.com/docs/connect#selenium-relay)).
 
 ####hostname
@@ -230,6 +230,12 @@ unit tests for any new or changed functionality. Lint and test your code using `
 
 ### v0.9.16
  - `tunnelFlags` options, courtesy of @saadtazi
+
+### v1.0.0
+ - Move to latest version of sauce tunnel / sauce connect
+ - Added ability to specify phantomjs capabilities (@saadtazi)
+ - Added secure commands for selenium (@saadtazi)
+
 
 ##License
 Copyright (c) 2013 Justin Reidy
