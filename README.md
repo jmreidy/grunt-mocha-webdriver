@@ -236,6 +236,8 @@ unit tests for any new or changed functionality. Lint and test your code using `
  - Added ability to specify phantomjs capabilities (@saadtazi)
  - Added secure commands for selenium (@saadtazi)
 
+### v1.0.1
+ - Improve Sauce test logging
 
 ##License
 Copyright (c) 2013 Justin Reidy
