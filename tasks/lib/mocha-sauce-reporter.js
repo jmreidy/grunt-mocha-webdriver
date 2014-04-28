@@ -22,7 +22,7 @@ module.exports = function (browser) {
     runner.on('fail', function (e) {
       failures++;
       failInfo[runner.suite.title] = failInfo[runner.suite.title] || [];
-      failInfo[runner.suite.title].push(e.title + (e.err.message ? (': ' + e.err.message) : ''));
+      failInfo[runner.suite.title].push(formatErrorMessage(e));
     });
 
     runner.on('end', function(){
@@ -48,4 +48,17 @@ module.exports = function (browser) {
   SauceReporter.prototype.__proto__ = BaseReporter.prototype;
 
   return SauceReporter;
+};
+
+var formatErrorMessage = function (e) {
+  var msg = e.title;
+  if (e.err) {
+    if (e.err.message) {
+      msg += (': ' + e.err.message + ' ');
+    }
+    if (e.err.stack) {
+      msg += (e.err.stack);
+    }
+  }
+  return msg;
 };
