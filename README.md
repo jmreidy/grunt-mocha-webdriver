@@ -244,6 +244,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 ### v1.0.1
  - Improve Sauce test logging
 
+### v1.0.2
+ - Add phantomJS flags (@saadtazi)
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
