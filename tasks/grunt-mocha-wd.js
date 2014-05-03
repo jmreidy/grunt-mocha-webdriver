@@ -27,7 +27,8 @@ module.exports = function (grunt) {
       testTags: [],
       tunnelFlags: null,
       secureCommands: false,
-      phantomCapabilities: {}
+      phantomCapabilities: {},
+      phantomFlags: []
     });
 
     grunt.util.async.forEachSeries(this.files, function (fileGroup, next) {
@@ -81,7 +82,7 @@ module.exports = function (grunt) {
     }
     grunt.log.writeln('Running webdriver tests against PhantomJS.');
 
-    startPhantom(phantomPort, opts.ignoreSslErrors, function (err, phantomProc) {
+    startPhantom(phantomPort, opts, function (err, phantomProc) {
       if (err) { return next(err); }
       browser.init(phantomCapabilities, function () {
         runTestsForBrowser(opts, fileGroup, browser, function (err) {
@@ -96,9 +97,10 @@ module.exports = function (grunt) {
 
   }
 
-  function startPhantom(port, ignoreSslErrors, next) {
-    var phantomOpts = ['--webdriver', port];
-    if (ignoreSslErrors) {
+  function startPhantom(port, opts, next) {
+    var phantomOpts = opts.phantomFlags || [];
+    phantomOpts.push('--webdriver', port);
+    if (opts.ignoreSslErrors) {
       phantomOpts.push('--ignore-ssl-errors', 'yes');
     }
     var process = childProcess.execFile(phantom.path, phantomOpts);

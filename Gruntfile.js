@@ -57,6 +57,18 @@ module.exports = function (grunt) {
           }
         }
       },
+      phantomFlag: {
+        src: ['test/phantom-flags.js'],
+        options: {
+          testName: 'phantom flags test',
+          usePhantom: true,
+          phantomPort: 5555,
+          usePromises: true,
+          phantomFlags: [
+            '--webdriver-logfile', 'phantom.log'
+          ]
+        }
+      },
       promises: {
         src: ['test/promiseAPi.js'],
         options: {

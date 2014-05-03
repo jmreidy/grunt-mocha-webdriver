@@ -90,6 +90,11 @@ Type: Object (Default: {})
 if testing against PhantomJS with the `usePhantom` flag, specify the
 [browser capabilities](https://github.com/detro/ghostdriver#what-extra-webdriver-capabilities-ghostdriver-offers).
 
+####phantomFlags
+Type: array (Default: [])
+
+if testing against PhantomJS with the `usePhantom` command-line options, specify start additional flags to use. Check [here](http://phantomjs.org/api/command-line.html) or type `phantomjs -h` for complete list of flags.
+
 ####usePromises
 Type: Boolean
 
