@@ -47,11 +47,15 @@ module.exports = function (grunt) {
 
   function runTestsForBrowser(opts, fileGroup, browser, next) {
     var onTestFinish = function(err) {
+      // report mocha test failure
+      var callback = function() {
+        next(err);
+      }
       if (opts.usePromises) {
-        browser.quit().nodeify(next);
+        browser.quit().nodeify(callback);
       }
       else {
-        browser.quit(next);
+        browser.quit(callback);
       }
     };
     opts.wd = wd;
