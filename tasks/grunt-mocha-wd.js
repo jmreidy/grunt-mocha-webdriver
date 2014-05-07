@@ -107,20 +107,29 @@ module.exports = function (grunt) {
     if (opts.ignoreSslErrors) {
       phantomOpts.push('--ignore-ssl-errors', 'yes');
     }
-    var process = childProcess.execFile(phantom.path, phantomOpts);
-    process.stdout.setEncoding('utf8');
+    var phantomProc = childProcess.execFile(phantom.path, phantomOpts);
+    var stopPhantomProc = function() {
+      phantomProc.kill();
+    };
+    // stop child phantomjs process when interrupting master process
+    process.on('SIGINT', stopPhantomProc);
+
+    phantomProc.on('exit', function () {
+      process.removeListener('SIGINT', stopPhantomProc);
+    });
+    phantomProc.stdout.setEncoding('utf8');
     var onPhantomData = function (data) {
       if (data.match(/running/i)) {
         grunt.log.writeln('PhantomJS started.');
-        process.stdout.removeListener('data', onPhantomData);
-        next(null, process);
+        phantomProc.stdout.removeListener('data', onPhantomData);
+        next(null, phantomProc);
       }
       else if (data.match(/error/i)) {
         grunt.log.error('Error starting PhantomJS');
         next(new Error(data));
       }
     };
-    process.stdout.on('data', onPhantomData);
+    phantomProc.stdout.on('data', onPhantomData);
   }
 
   /**
