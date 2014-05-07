@@ -247,6 +247,10 @@ unit tests for any new or changed functionality. Lint and test your code using `
 ### v1.0.2
  - Add phantomJS flags (@saadtazi)
 
+### v1.0.3
+ - Make PhantomJS process interruptable (@shawnzhu)
+ - Correctly report exit code failure for test error (@shawnzhu)
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
