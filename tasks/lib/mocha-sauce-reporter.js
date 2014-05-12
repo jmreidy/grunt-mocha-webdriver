@@ -39,7 +39,7 @@ module.exports = function (browser) {
         }
       }
       if (browser.mode === 'saucelabs') {
-        console.log('Test video at: http://saucelabs.com/tests/' + browser.sessionID);
+        console.log('Test video at: saucelabs.com/tests/' + browser.sessionID);
       }
       console.log();
     });
