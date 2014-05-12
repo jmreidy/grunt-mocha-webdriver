@@ -251,6 +251,11 @@ unit tests for any new or changed functionality. Lint and test your code using `
  - Make PhantomJS process interruptable (@shawnzhu)
  - Correctly report exit code failure for test error (@shawnzhu)
 
+### v1.0.4
+  - Shortened Sauce URL for copyability (#62) (@ChrisWren)
+  - Fixed Sauce Labs spelling and added error message (#63) (@ChrisWren)
+  - Add support for "build" tagging (#64) (@ChrisWren)
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
