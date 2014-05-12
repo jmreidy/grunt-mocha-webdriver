@@ -78,6 +78,8 @@ module.exports = function (grunt) {
         options: {
           testName: 'sauce test',
           concurrency: 2,
+          testTags: ['mochaWebDriver'],
+          build: 'testBuild',
           browsers: [
             {browserName: 'internet explorer', platform: 'Windows 7', version: '9'},
             {browserName: 'internet explorer', platform: 'Windows 7', version: '8'},
