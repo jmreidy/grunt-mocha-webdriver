@@ -16,7 +16,7 @@ var childProcess = require('child_process');
  * Licensed under the MIT license
  */
 module.exports = function (grunt) {
-  grunt.registerMultiTask('mochaWebdriver', 'Run mocha tests against PhantomJS and SauceLabs', function () {
+  grunt.registerMultiTask('mochaWebdriver', 'Run mocha tests against PhantomJS and Sauce Labs', function () {
 
     var opts = this.options({
       username: process.env.SAUCE_USERNAME,
@@ -25,6 +25,7 @@ module.exports = function (grunt) {
       concurrency: 1,
       testName: "",
       testTags: [],
+      build: process.env.TRAVIS_BUILD_NUMBER || process.env.BUILD_NUMBER || process.env.BUILD_TAG || process.env.CIRCLE_BUILD_NUM,
       tunnelFlags: null,
       secureCommands: false,
       phantomCapabilities: {},
@@ -172,6 +173,9 @@ module.exports = function (grunt) {
     }
     if (opts.testTags) {
       browserOpts.tags = opts.testTags;
+    }
+    if (opts.build) {
+      browserOpts.build = opts.build;
     }
     if (opts.identifier) {
       browserOpts['tunnel-identifier'] = opts.identifier;
