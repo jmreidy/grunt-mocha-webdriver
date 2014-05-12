@@ -7,6 +7,8 @@ var async = require('async');
 var runner = require('./lib/mocha-runner');
 var phantom = require('phantomjs');
 var childProcess = require('child_process');
+var BaseReporter = require('mocha').reporters.Base;
+var color = BaseReporter.color;
 
 /*
  * grunt-mocha-sauce
@@ -184,6 +186,8 @@ module.exports = function (grunt) {
     browser.init(browserOpts, function (err) {
       if (err) {
         grunt.log.error('Could not initialize browser - ' + mode);
+        grunt.log.error('Make sure Sauce Labs supports the following browser/platform combo' +
+                        ' on ' + color('bright yellow', 'saucelabs.com/platforms') + ': ' + browserOpts.browserTitle);
         return cb(false);
       }
       runTestsForBrowser(opts, fileGroup, browser, cb);
@@ -220,13 +224,13 @@ module.exports = function (grunt) {
       var tunnel = new SauceTunnel(opts.username, opts.key, opts.identifier, true, opts.tunnelFlags);
       configureLogEvents(tunnel);
 
-      grunt.log.writeln("=> Connecting to Saucelabs ...");
+      grunt.log.writeln("=> Connecting to Sauce Labs ...");
 
       tunnel.start(function(isCreated) {
         if (!isCreated) {
           return next(new Error('Failed to create Sauce tunnel.'));
         }
-        grunt.log.ok("Connected to Saucelabs.");
+        grunt.log.ok("Connected to Sauce Labs.");
 
         var testQueue = async.queue(function (browserOpts, cb) {
           // browserOpts, opts, usePromises, errorMsg, fileGroup, cb
