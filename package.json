@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "wd": "~0.2.17",
-    "async": "~0.2.10",
+    "async": "~0.8.0",
     "mocha": "~1.18.2",
     "sauce-tunnel": "~2.0.1"
   },
