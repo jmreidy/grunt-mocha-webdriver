@@ -256,6 +256,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
   - Fixed Sauce Labs spelling and added error message (#63) (@ChrisWren)
   - Add support for "build" tagging (#64) (@ChrisWren)
 
+### v1.0.5
+  - Check if phantom is closed before killing it (#68) (@binarykitchen)
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
