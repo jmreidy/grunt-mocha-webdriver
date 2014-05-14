@@ -53,7 +53,7 @@ module.exports = function (grunt) {
       // report mocha test failure
       var callback = function() {
         next(err);
-      }
+      };
       if (opts.usePromises) {
         browser.quit().nodeify(callback);
       }
@@ -93,11 +93,24 @@ module.exports = function (grunt) {
       if (err) { return next(err); }
       browser.init(phantomCapabilities, function () {
         runTestsForBrowser(opts, fileGroup, browser, function (err) {
-          phantomProc.on('close', function () {
+
+          function onClose() {
             grunt.log.writeln('Phantom exited.');
             next(err);
-          });
-          phantomProc.kill();
+          }
+
+          // the process might already be closed due to an internal crash,
+          // so check first is already killed to avoid a deadlock.
+          if (phantomProc.killed) {
+            onClose();
+          }
+          else {
+            phantomProc.on('close', function() {
+              onClose();
+            });
+
+            phantomProc.kill();
+          }
         });
       });
     });
