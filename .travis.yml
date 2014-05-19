@@ -8,4 +8,5 @@ env:
     - secure: "mA5tCzY11lmTXQ0W3TOEMfn2KRkVrc5maWrFeSaIRd3OxAoKQkxbgeKurxfM8HNhMIV9yurPtcM4vp+OT+gB8IKwGiN4LfJfn90Kc/5C3rj7BLWBH03gVahDOEg4NK2/JJBWSJZj/vldDWAsnKpWjRmw/aaEwX2suKSPFBVmg9o="
 
 before_script:
+  - npm install -g npm@~1.4.6
   - npm install -g grunt-cli
