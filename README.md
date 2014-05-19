@@ -259,6 +259,9 @@ unit tests for any new or changed functionality. Lint and test your code using `
 ### v1.0.5
   - Check if phantom is closed before killing it (#68) (@binarykitchen)
 
+### v1.0.6
+  - Report pass/fail status to Sauce Labs (@ChrisWren)
+
 ##License
 Copyright (c) 2013 Justin Reidy
 
