@@ -7,6 +7,6 @@ env:
     - secure: "Vw5cnzdO8//kMTK5GKo9Rw8BXHL0pOkONSeQw7gwsY3RD35biBg8szT6ejUeo8He28XQ0zUjlH/2hnazLFXCMC5b4ZRMMRR3hvzzR50rRGM3C0jKuycC6KVK+aoLL3blRrICOeITvyyRsgb9HrBdixa7IObwju36e6npzONEPKM="
     - secure: "mA5tCzY11lmTXQ0W3TOEMfn2KRkVrc5maWrFeSaIRd3OxAoKQkxbgeKurxfM8HNhMIV9yurPtcM4vp+OT+gB8IKwGiN4LfJfn90Kc/5C3rj7BLWBH03gVahDOEg4NK2/JJBWSJZj/vldDWAsnKpWjRmw/aaEwX2suKSPFBVmg9o="
 
-before_script:
+before_install:
   - npm install -g npm@~1.4.6
   - npm install -g grunt-cli
