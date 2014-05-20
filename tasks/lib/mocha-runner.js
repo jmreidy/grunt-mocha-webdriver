@@ -1,3 +1,5 @@
+'use strict';
+
 var Mocha = require('mocha');
 var path = require('path');
 var Module = require('module');
@@ -28,7 +30,7 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
 
   var mocha = new Mocha(opts);
 
-  mocha.suite.on('pre-require', function (context, file, m) {
+  mocha.suite.on('pre-require', function () {
     this.ctx.browser = browser;
     this.ctx.wd = opts.wd;
     this.ctx.mochaOptions = opts;
@@ -50,7 +52,6 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
     var runDomain = domain.create();
     var mochaOptions = mocha.options;
     var mochaRunner = new Mocha.Runner(mocha.suite);
-    var mochaReporter = new mocha._reporter(mochaRunner);
     mochaRunner.ignoreLeaks = (mochaOptions.ignoreLeaks !== false);
     mochaRunner.asyncOnly = mochaOptions.asyncOnly;
     if (mochaOptions.grep) {

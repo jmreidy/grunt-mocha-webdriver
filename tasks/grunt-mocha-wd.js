@@ -14,7 +14,7 @@ var color = BaseReporter.color;
  * grunt-mocha-sauce
  * https://github.com/jmreidy/grunt-mocha-sauce
  *
- * Copyright (c) 2013 Justin Reidy
+ * Copyright (c) 2014 Justin Reidy
  * Licensed under the MIT license
  */
 module.exports = function (grunt) {
