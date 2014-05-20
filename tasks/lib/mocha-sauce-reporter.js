@@ -1,3 +1,5 @@
+'use strict';
+
 var BaseReporter = require('mocha').reporters.Base;
 var color = BaseReporter.color;
 
@@ -6,13 +8,10 @@ module.exports = function (browser) {
   var SauceReporter = function(runner) {
     BaseReporter.call(this, runner);
 
-    var self = this;
-    var stats = this.stats;
     var numberTests = 0;
     var passes = 0;
     var failures = 0;
     var failInfo = {};
-    var i;
 
     runner.on('test end', function () {
       numberTests++;
@@ -39,7 +38,7 @@ module.exports = function (browser) {
         }
       }
       if (browser.mode === 'saucelabs') {
-        browser.sauceJobStatus(failures === 0)
+        browser.sauceJobStatus(failures === 0);
         console.log('Test video at: saucelabs.com/tests/' + browser.sessionID);
       }
       console.log();
