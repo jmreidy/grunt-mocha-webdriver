@@ -8,6 +8,7 @@ var runner = require('./lib/mocha-runner');
 var phantom = require('phantomjs');
 var childProcess = require('child_process');
 var BaseReporter = require('mocha').reporters.Base;
+var seleniumLauncher = require('selenium-launcher');
 var color = BaseReporter.color;
 
 /*
@@ -277,14 +278,29 @@ module.exports = function (grunt) {
   function runTestsOnSelenium(fileGroup, opts, next) {
     if (opts.browsers) {
       grunt.log.writeln("=> Connecting to Selenium ...");
-
-      var testQueue = async.queue(function (browserOpts, cb) {
-        var browser = initBrowser(browserOpts,
-                                  opts,
-                                  "selenium",
-                                  fileGroup,
-                                  cb);
-      }, opts.concurrency);
+        var testQueue = async.queue(function (browserOpts, cb) {
+          function afterSelenium () {
+            var browser = initBrowser(browserOpts,
+                                      opts,
+                                      "selenium",
+                                      fileGroup,
+                                      cb);
+          }
+          if (opts.autoInstall) {
+            seleniumLauncher({ chrome: browserOpts.browserName === 'chrome' }, function(err, selenium) {
+              grunt.log.writeln('Selenium Running');
+              if(err){
+                selenium.exit();
+                grunt.fail.fatal(err);
+                return;
+              }
+              opts.port = selenium.port;
+              afterSelenium();
+            }, opts.concurrency);
+          } else {
+            afterSelenium();
+          }
+      });
 
       opts.browsers.forEach(function (browserOpts) {
         startBrowserTests(testQueue, 'selenium', browserOpts);
@@ -297,7 +313,6 @@ module.exports = function (grunt) {
         }
         next(err);
       };
-
     }
     else {
       grunt.log.writeln('No browsers configured for running on Saucelabs.');
