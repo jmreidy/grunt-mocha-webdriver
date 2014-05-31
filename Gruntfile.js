@@ -6,27 +6,7 @@ module.exports = function (grunt) {
     jshint: {
       all: ['Gruntfile.js', 'tasks/**/*.js', 'test/*.js'],
       options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        indent: 2,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        node: true,
-        nonew: true,
-        proto: true,
-        sub: true,
-        undef: true,
-        predef: [
-          "describe",
-          "it",
-          "before",
-          "beforeEach",
-          "after",
-          "afterEach",
-          "browser"
-        ]
+        jshintrc: true
       }
     },
 
@@ -172,7 +152,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task.
-  grunt.registerTask('test', [  'mochaWebdriver:phantom',
+  grunt.registerTask('test', [  'jshint',
+                                'mochaWebdriver:phantom',
                                 'mochaWebdriver:phantomCapabilities',
                                 'mochaWebdriver:promises',
                                 'mochaWebdriver:requires',
