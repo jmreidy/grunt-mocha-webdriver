@@ -5,6 +5,19 @@ var color = BaseReporter.color;
 
 module.exports = function (browser) {
 
+  var formatErrorMessage = function (e) {
+    var msg = e.title;
+    if (e.err) {
+      if (e.err.message) {
+        msg += (': ' + e.err.message + ' ');
+      }
+      if (e.err.stack) {
+        msg += (e.err.stack);
+      }
+    }
+    return msg;
+  };
+
   var SauceReporter = function(runner) {
     BaseReporter.call(this, runner);
 
@@ -48,17 +61,4 @@ module.exports = function (browser) {
   SauceReporter.prototype.__proto__ = BaseReporter.prototype;
 
   return SauceReporter;
-};
-
-var formatErrorMessage = function (e) {
-  var msg = e.title;
-  if (e.err) {
-    if (e.err.message) {
-      msg += (': ' + e.err.message + ' ');
-    }
-    if (e.err.stack) {
-      msg += (e.err.stack);
-    }
-  }
-  return msg;
 };
