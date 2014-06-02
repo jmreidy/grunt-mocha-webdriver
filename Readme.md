@@ -130,6 +130,11 @@ If true, it will use saucelabs, with default `hostname` set to `127.0.0.1` and `
 in order to send selenium commands through Sauce Connect tunnel (more info
 [here](https://saucelabs.com/docs/connect#selenium-relay)).
 
+####autoInstall
+Type: Boolean
+
+If `true` this will download Selenium and Chrome Driver to run tests locally.
+
 ####hostname
 Type: String
 
