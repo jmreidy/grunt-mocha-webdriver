@@ -143,6 +143,7 @@ module.exports = function (grunt) {
           concurrency: 2,
           hostname: '127.0.0.1',
           port:   '4444',
+          autoInstall: true,
           browsers: [
             {browserName: 'firefox'},
             // {browserName: 'internet explorer', platform: 'Windows 7', version: '8'},
