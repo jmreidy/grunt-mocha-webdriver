@@ -37,7 +37,6 @@
     "wd": "~0.2.17",
     "async": "~0.9.0",
     "mocha": "~1.19.0",
-    "sauce-tunnel": "~2.0.1"
     "sauce-tunnel": "~2.0.1",
     "selenium-launcher": "git://github.com/wookiehangover/nodejs-selenium-launcher.git"
   },
