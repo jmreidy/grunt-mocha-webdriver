@@ -276,6 +276,7 @@ module.exports = function (grunt) {
   }
 
   function runTestsOnSelenium(fileGroup, opts, next) {
+    var seleniumServers = [];
     if (opts.browsers) {
       grunt.log.writeln("=> Connecting to Selenium ...");
         var testQueue = async.queue(function (browserOpts, cb) {
@@ -300,7 +301,7 @@ module.exports = function (grunt) {
           } else {
             afterSelenium();
           }
-      });
+        });
 
       opts.browsers.forEach(function (browserOpts) {
         startBrowserTests(testQueue, 'selenium', browserOpts);
@@ -308,6 +309,9 @@ module.exports = function (grunt) {
 
       testQueue.drain = function () {
         var err;
+        seleniumServers.forEach(function(seleniumServer) {
+          seleniumServer.kill();
+        });
         if (browserFailed) {
           err = new Error('One or more tests on Selenium failed.');
         }
