@@ -15,7 +15,7 @@ var color = BaseReporter.color;
  * grunt-mocha-sauce
  * https://github.com/jmreidy/grunt-mocha-sauce
  *
- * Copyright (c) 2013 Justin Reidy
+ * Copyright (c) 2014 Justin Reidy
  * Licensed under the MIT license
  */
 module.exports = function (grunt) {
@@ -276,6 +276,7 @@ module.exports = function (grunt) {
   }
 
   function runTestsOnSelenium(fileGroup, opts, next) {
+    var seleniumServers = [];
     if (opts.browsers) {
       grunt.log.writeln("=> Connecting to Selenium ...");
         var testQueue = async.queue(function (browserOpts, cb) {
@@ -289,6 +290,7 @@ module.exports = function (grunt) {
           if (opts.autoInstall) {
             seleniumLauncher({ chrome: browserOpts.browserName === 'chrome' }, function(err, selenium) {
               grunt.log.writeln('Selenium Running');
+              seleniumServers.push(selenium);
               if(err){
                 selenium.exit();
                 grunt.fail.fatal(err);
@@ -300,7 +302,7 @@ module.exports = function (grunt) {
           } else {
             afterSelenium();
           }
-      });
+      }, opts.autoInstall ? Object.keys(opts.browsers).length : 1);
 
       opts.browsers.forEach(function (browserOpts) {
         startBrowserTests(testQueue, 'selenium', browserOpts);
@@ -308,6 +310,9 @@ module.exports = function (grunt) {
 
       testQueue.drain = function () {
         var err;
+        seleniumServers.forEach(function(seleniumServer) {
+          seleniumServer.kill();
+        });
         if (browserFailed) {
           err = new Error('One or more tests on Selenium failed.');
         }
