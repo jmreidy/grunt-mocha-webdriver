@@ -7,7 +7,6 @@
     "newcap": true,
     "noarg": true,
     "node": true,
-    "nonew": true,
     "predef": [
         "describe",
         "it",
