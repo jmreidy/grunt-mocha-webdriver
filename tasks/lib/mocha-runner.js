@@ -52,6 +52,7 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
     var runDomain = domain.create();
     var mochaOptions = mocha.options;
     var mochaRunner = new Mocha.Runner(mocha.suite);
+    new mocha._reporter(mochaRunner);
     mochaRunner.ignoreLeaks = (mochaOptions.ignoreLeaks !== false);
     mochaRunner.asyncOnly = mochaOptions.asyncOnly;
     if (mochaOptions.grep) {
