@@ -1,7 +1,7 @@
-![Travis Status](https://secure.travis-ci.org/jmreidy/grunt-mocha-webdriver.png)
-
-##grunt-mocha-webdriver
-A [Grunt](http://gruntjs.com) task that runs Mocha-based functional tests against
+# grunt-mocha-webdriver
+[![NPM version](https://badge.fury.io/js/grunt-mocha-webdriver.png)](http://badge.fury.io/js/grunt-mocha-webdriver) [![Build Status](https://travis-ci.org/jmreidy/grunt-mocha-webdriver.svg?branch=master)](https://travis-ci.org/jmreidy/grunt-mocha-webdriver) [![david-dm-status-badge](https://david-dm.org/jmreidy/grunt-mocha-webdriver.png)](https://david-dm.org/jmreidy/grunt-mocha-webdriver#info=dependencies&view=table)
+ [![david-dm-status-badge](https://david-dm.org/jmreidy/grunt-mocha-webdriver/dev-status.png)](https://david-dm.org/jmreidy/grunt-mocha-webdriver#info=devDependencies&view=table)
+> A [Grunt](http://gruntjs.com) task that runs Mocha-based functional tests against
 a Webdriver-enabled source: specifically, PhantomJS for local testing and Sauce Labs
 for comprehensive cross-browser testing.
 
