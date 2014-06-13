@@ -1,7 +1,8 @@
-### unreleased
-
- - Update async to 0.9 and mocha to 1.19.0
- - Housecleaning: move release history to History.md, list contributors, fine-tune package.json and remove some unneeded variables (lint)
+### v1.1.0
+ - Moved changelog to History.md (@binarykitchen)
+ - Added autoinstall options to automatically install chromedriver and selenium (@ChrisWren)
+ - Fixes and cleanup (@ChrisWren)
+ - Updated dependencies (@ChrisWren, @binarykitchen);
 
 ### v1.0.6
  - Report pass/fail status to Sauce Labs (@ChrisWren)
