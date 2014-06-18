@@ -301,7 +301,7 @@ module.exports = function (grunt) {
           } else {
             afterSelenium();
           }
-        });
+        }, opts.autoInstall ? Object.keys(opts.browsers).length : 1);
 
       opts.browsers.forEach(function (browserOpts) {
         startBrowserTests(testQueue, 'selenium', browserOpts);
