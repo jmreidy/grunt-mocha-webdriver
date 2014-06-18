@@ -39,7 +39,7 @@ module.exports = function (grunt) {
       if (opts.usePhantom) {
         runTestsOnPhantom(fileGroup, opts, next);
       }
-      else if (opts.hostname && !opts.secureCommands) {
+      else if (opts.autoInstall || opts.hostname && !opts.secureCommands) {
         runTestsOnSelenium(fileGroup, opts, next);
       }
       else {
