@@ -1,3 +1,6 @@
+### v1.1.1
+ - Fix `opts.autoInstall` behavior (@ChrisWren)
+
 ### v1.1.0
  - Moved changelog to History.md (@binarykitchen)
  - Added autoinstall options to automatically install chromedriver and selenium (@ChrisWren)
