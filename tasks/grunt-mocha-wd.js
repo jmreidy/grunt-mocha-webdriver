@@ -39,7 +39,7 @@ module.exports = function (grunt) {
       if (opts.usePhantom) {
         runTestsOnPhantom(fileGroup, opts, next);
       }
-      else if (opts.hostname && !opts.secureCommands) {
+      else if (opts.autoInstall || opts.hostname && !opts.secureCommands) {
         runTestsOnSelenium(fileGroup, opts, next);
       }
       else {
@@ -289,6 +289,7 @@ module.exports = function (grunt) {
           }
           if (opts.autoInstall) {
             seleniumLauncher({ chrome: browserOpts.browserName === 'chrome' }, function(err, selenium) {
+              seleniumServers.push(selenium);
               grunt.log.writeln('Selenium Running');
               if(err){
                 selenium.exit();
@@ -301,7 +302,7 @@ module.exports = function (grunt) {
           } else {
             afterSelenium();
           }
-        });
+        }, opts.autoInstall ? Object.keys(opts.browsers).length : 1);
 
       opts.browsers.forEach(function (browserOpts) {
         startBrowserTests(testQueue, 'selenium', browserOpts);
