@@ -289,6 +289,7 @@ module.exports = function (grunt) {
           }
           if (opts.autoInstall) {
             seleniumLauncher({ chrome: browserOpts.browserName === 'chrome' }, function(err, selenium) {
+              seleniumServers.push(selenium);
               grunt.log.writeln('Selenium Running');
               if(err){
                 selenium.exit();
