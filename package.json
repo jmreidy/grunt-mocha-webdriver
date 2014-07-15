@@ -1,7 +1,7 @@
 {
   "name": "grunt-mocha-webdriver",
   "description": "Grunt task to run Mocha tests against PhantomJS or Saucelabs",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "scripts": {
     "test": "grunt test"
   },
@@ -34,10 +34,10 @@
   ],
   "main": "index.js",
   "dependencies": {
-    "wd": "~0.2.17",
-    "async": "~0.9.0",
-    "mocha": "~1.19.0",
-    "sauce-tunnel": "~2.0.1",
+    "wd": "^0.3.3",
+    "async": "^0.9.0",
+    "mocha": "^1.20.0",
+    "sauce-tunnel": "^2.1.0",
     "selenium-launcher": "git://github.com/wookiehangover/nodejs-selenium-launcher.git"
   },
   "devDependencies": {

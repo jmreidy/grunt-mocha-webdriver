@@ -1,3 +1,6 @@
+### v1.1.2
+-  Update dependencies
+
 ### v1.1.1
  - Fix `opts.autoInstall` behavior (@ChrisWren)
 
