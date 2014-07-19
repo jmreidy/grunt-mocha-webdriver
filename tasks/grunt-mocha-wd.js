@@ -80,7 +80,7 @@ module.exports = function (grunt) {
 
   function runTestsOnPhantom(fileGroup, opts, next) {
     var browser;
-    var phantomPort = opts.phantomPort? opts.phantomPort : 4444;
+    var phantomPort = opts.phantomPort || 4444;
     var phantomCapabilities = opts.phantomCapabilities;
     if (opts.usePromises) {
       browser = wd.promiseChainRemote({port: phantomPort});
