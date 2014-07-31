@@ -1,6 +1,7 @@
 'use strict';
 
 var Mocha = require('mocha');
+var color = Mocha.reporters.Base.color;
 var path = require('path');
 var Module = require('module');
 var generateSauceReporter = require('./mocha-sauce-reporter');
@@ -11,7 +12,16 @@ var domain = require('domain');
 module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
   //browserTitle means we're on a SL test
   if (browser.browserTitle) {
-    opts.reporter = generateSauceReporter(browser);
+    if (opts.reporter && opts.concurrency > 1) {
+      if (!opts.customReporter) {
+        console.log(color('medium', 'ignoring "reporter" option because concurrency is > 1'));
+        opts.reporter = generateSauceReporter(browser);
+      } else {
+        // to allow customReporter
+        // check ./mocha-sauce-reporter or https://github.com/saadtazi/gmwd-teamcity-reporter
+        opts.reporter = require(opts.reporter)(browser);
+      }
+    }
   }
 
   var cwd = process.cwd();

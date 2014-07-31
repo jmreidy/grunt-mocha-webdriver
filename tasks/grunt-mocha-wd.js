@@ -30,6 +30,7 @@ module.exports = function (grunt) {
       testTags: [],
       build: process.env.TRAVIS_BUILD_NUMBER || process.env.BUILD_NUMBER || process.env.BUILD_TAG || process.env.CIRCLE_BUILD_NUM,
       tunnelFlags: null,
+      tunneled: true,
       secureCommands: false,
       phantomCapabilities: {},
       phantomFlags: []
@@ -193,12 +194,13 @@ module.exports = function (grunt) {
     if (opts.build) {
       browserOpts.build = opts.build;
     }
-    if (opts.identifier) {
+    if (opts.identifier && opts.tunneled) {
       browserOpts['tunnel-identifier'] = opts.identifier;
     }
 
     browser.init(browserOpts, function (err) {
       if (err) {
+        grunt.log.error(err);
         grunt.log.error('Could not initialize browser - ' + mode);
         grunt.log.error('Make sure Sauce Labs supports the following browser/platform combo' +
                         ' on ' + color('bright yellow', 'saucelabs.com/platforms') + ': ' + browserOpts.browserTitle);
@@ -235,7 +237,7 @@ module.exports = function (grunt) {
 
   function runTestsOnSaucelabs(fileGroup, opts, next) {
     if (opts.browsers) {
-      var tunnel = new SauceTunnel(opts.username, opts.key, opts.identifier, true, opts.tunnelFlags);
+      var tunnel = new SauceTunnel(opts.username, opts.key, opts.identifier, opts.tunneled, opts.tunnelFlags);
       configureLogEvents(tunnel);
 
       grunt.log.writeln("=> Connecting to Sauce Labs ...");

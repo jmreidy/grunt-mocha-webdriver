@@ -14,15 +14,15 @@ module.exports = function (grunt) {
 
     mochaWebdriver: {
       options: {
-        timeout: 1000 * 60 * 3,
-        reporter: 'spec'
+        timeout: 1000 * 60 * 3
       },
       phantom: {
         src: ['test/sanity.js'],
         options: {
           testName: 'phantom test',
           usePhantom: true,
-          phantomPort: 5555
+          phantomPort: 5555,
+          reporter: 'spec'
         }
       },
       phantomCapabilities: {
@@ -32,6 +32,7 @@ module.exports = function (grunt) {
           usePhantom: true,
           phantomPort: 5555,
           usePromises: true,
+          reporter: 'spec',
           // see https://github.com/detro/ghostdriver
           phantomCapabilities: {
               'phantomjs.page.settings.userAgent': 'customUserAgent',
@@ -46,6 +47,7 @@ module.exports = function (grunt) {
           usePhantom: true,
           phantomPort: 5555,
           usePromises: true,
+          reporter: 'spec',
           phantomFlags: [
             '--webdriver-logfile', 'phantom.log'
           ]
@@ -56,7 +58,8 @@ module.exports = function (grunt) {
         options: {
           testName: 'phantom test',
           usePhantom: true,
-          usePromises: true
+          usePromises: true,
+          reporter: 'spec'
         }
       },
       requires: {
@@ -64,6 +67,7 @@ module.exports = function (grunt) {
         options: {
           testName: 'phantom requires test',
           usePhantom: true,
+          reporter: 'spec',
           require: ['test/support/index.js']
         }
       },
@@ -95,7 +99,7 @@ module.exports = function (grunt) {
         }
       },
       saucePromises: {
-        src: ['test/promiseAPi.js'],
+        src: ['test/promiseAPI.js'],
         options: {
           testName: 'sauce promises test',
           concurrency: 2,
@@ -115,6 +119,20 @@ module.exports = function (grunt) {
           usePromises: true,
           browsers: [
             {browserName: 'chrome', platform: 'Windows 7', version: ''}
+          ]
+        }
+      },
+      customReporter: {
+        src: ['test/promiseAPI.js'],
+        options: {
+          tunneled: false,
+          testName: 'custom reporter test',
+          reporter: 'spec',
+          // customReporter: false, // (false is default)
+          concurrency: 1,
+          usePromises: true,
+          browsers: [
+            {browserName: 'chrome', platform: 'Windows 7', version: '36'}
           ]
         }
       },
@@ -162,7 +180,8 @@ module.exports = function (grunt) {
                                 'mochaWebdriver:requires',
                                 'mochaWebdriver:sauce',
                                 'mochaWebdriver:tunnelOptions',
-                                'mochaWebdriver:saucePromises'
+                                'mochaWebdriver:saucePromises',
+                                'mochaWebdriver:customReporter'
                               ]);
 
   grunt.registerTask('testSelenium', ['mochaWebdriver:selenium', 'mochaWebdriver:seleniumPromises']);
