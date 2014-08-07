@@ -16,12 +16,14 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
       if (!opts.customReporter) {
         console.log(color('medium', 'ignoring "reporter" option because concurrency is > 1'));
         opts.reporter = generateSauceReporter(browser);
-      } else {
-        // to allow customReporter
-        // check ./mocha-sauce-reporter or https://github.com/saadtazi/gmwd-teamcity-reporter
-        opts.reporter = require(opts.reporter)(browser);
       }
     }
+    if (opts.customReporter) {
+      // to allow customReporter
+      // check ./mocha-sauce-reporter or https://github.com/saadtazi/gmwd-teamcity-reporter
+      opts.reporter = require(opts.reporter)(browser, opts);
+    }
+    
   }
 
   var cwd = process.cwd();
