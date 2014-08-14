@@ -21,7 +21,8 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
     if (opts.customReporter) {
       // to allow customReporter
       // check ./mocha-sauce-reporter or https://github.com/saadtazi/gmwd-teamcity-reporter
-      opts.reporter = require(opts.reporter)(browser, opts);
+      opts.originalReporter = opts.originalReporter || opts.reporter;
+      opts.reporter = require(opts.originalReporter)(browser, opts);
     }
     
   }
