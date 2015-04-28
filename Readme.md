@@ -64,10 +64,11 @@ Please look at this project's Gruntfile and tests to see all that in action.
 
 ###Options
 The usual Mocha options are passed through this task to a new Mocha instance.
-Please note that while it's possible to specify the Mocha reporter for
-tests running on Phantom, there's only one reporter currently supported
-for tests against Sauce Labs. This restriction is in place to handle
-concurrent Sauce Labs testing sessions, which could pollute the log.
+Please note that while it's possible to specify the Mocha `reporter` for
+tests running on Phantom and when `concurrency` is 1 on saucelabs or selenium,
+the task will default to a custom reporter if concurrency is more than 1
+and the browser is not phantom. This restriction is in place to handle concurrent
+Sauce Labs/Selenium testing sessions, which could pollute the log.
 
 The following options can be supplied to the task:
 
@@ -155,6 +156,10 @@ generated if not specified. Useful for connected to existing Sauce tunnels.
 Type: Int
 
 The number of concurrent browser sessions to spin up on Sauce Labs. Defaults to 1.
+
+####tunneled
+Type: Boolean
+A boolean value to indicate if the tunnel is to be created or not.
 
 ####tunnelFlags
 Type: Array
