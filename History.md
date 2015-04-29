@@ -1,3 +1,7 @@
+### v1.2.1
+-  Update location of selenium-launcher dependency
+-  Merge #79.
+
 ### v1.2.0
 -  Drop support for Node 0.8
 -  Add custom reporter for Saucelabs / Selenium (#81) (@saadtazi)
