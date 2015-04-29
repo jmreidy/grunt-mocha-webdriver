@@ -52,7 +52,7 @@ module.exports = function (browser) {
       }
       if (browser.mode === 'saucelabs') {
         browser.sauceJobStatus(failures === 0);
-        console.log('Test video at: saucelabs.com/tests/' + browser.sessionID);
+        console.log('Test video at: https://saucelabs.com/tests/' + browser.sessionID);
       }
       console.log();
     });
