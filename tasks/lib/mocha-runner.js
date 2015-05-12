@@ -24,7 +24,7 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
       opts.originalReporter = opts.originalReporter || opts.reporter;
       opts.reporter = require(opts.originalReporter)(browser, opts);
     }
-    
+
   }
 
   var cwd = process.cwd();
@@ -86,7 +86,6 @@ module.exports = function (opts, fileGroup, browser, grunt, onTestFinish) {
     });
   } catch (e) {
     grunt.log.error("Mocha failed to run");
-    grunt.log.error(e.stack);
-    onTestFinish(false);
+    onTestFinish(e);
   }
 };
