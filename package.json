@@ -12,12 +12,7 @@
       "email": "jmreidy@rzrsharp.net"
     }
   ],
-  "license": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/jmreidy/grunt-mocha-webdriver/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/jmreidy/grunt-mocha-webdriver.git"
