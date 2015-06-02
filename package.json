@@ -1,7 +1,7 @@
 {
   "name": "grunt-mocha-webdriver",
   "description": "Grunt task to run Mocha tests against PhantomJS or Saucelabs",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "scripts": {
     "test": "grunt test"
   },
