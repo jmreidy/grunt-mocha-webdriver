@@ -1,3 +1,7 @@
+### v1.2.2
+-  Fix bug that prevented mocha failures from failing tests
+-  Update license
+
 ### v1.2.1
 -  Update location of selenium-launcher dependency
 -  Merge #79.
