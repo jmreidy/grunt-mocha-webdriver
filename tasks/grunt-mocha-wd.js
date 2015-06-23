@@ -125,7 +125,8 @@ module.exports = function (grunt) {
     if (opts.ignoreSslErrors) {
       phantomOpts.push('--ignore-ssl-errors', 'yes');
     }
-    var phantomProc = childProcess.execFile(phantom.path, phantomOpts);
+
+    var phantomProc = childProcess.spawn(phantom.path, phantomOpts);
     var stopPhantomProc = function() {
       phantomProc.kill();
     };
