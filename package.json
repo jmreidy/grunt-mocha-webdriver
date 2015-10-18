@@ -1,28 +1,49 @@
 {
-  "name": "grunt-mocha-wd",
-  "version": "0.1.0",
-  "description": "Grunt task to run Mocha tests against a Selenium grid",
-  "main": "index.js",
+  "name": "grunt-mocha-webdriver",
+  "description": "Grunt task to run Mocha tests against PhantomJS or Saucelabs",
+  "version": "1.2.2",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test"
   },
-  "repository": "",
   "author": "Justin Reidy <jmreidy@rzrsharp.net>",
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/jmreidy/grunt-mocha-sauce/blob/master/LICENSE-MIT"
+  "contributors": [
+    {
+      "name": "Justin Reidy",
+      "email": "jmreidy@rzrsharp.net"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmreidy/grunt-mocha-webdriver.git"
   },
+  "bugs": "https://github.com/jmreidy/grunt-mocha-webdriver/issues/",
+  "keywords": [
+    "grunt",
+    "gruntplugin",
+    "mocha",
+    "e2e",
+    "webdriver",
+    "phantomjs",
+    "saucelabs"
+  ],
+  "main": "index.js",
   "dependencies": {
-    "wd": "~0.0.32"
+    "wd": "^0.3.3",
+    "async": "^0.9.0",
+    "mocha": "^1.20.0",
+    "sauce-tunnel": "^2.1.0",
+    "selenium-launcher": "git+https://github.com/wookiehangover/nodejs-selenium-launcher.git"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.4.3",
-    "async": "~0.2.8",
-    "mocha": "~1.9.0",
-    "grunt": "~0.4.0"
+    "grunt-contrib-jshint": "~0.10.0",
+    "phantomjs": "~1.9.2"
   },
   "peerDependencies": {
-    "mocha": "~1.9.0",
-    "grunt": "~0.4.0"
+    "grunt": "~0.4.0",
+    "phantomjs": "~1.9.2"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
   }
 }

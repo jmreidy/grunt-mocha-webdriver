@@ -3,3 +3,4 @@
 .idea/
 tmp/
 npm-debug.log
+sauce_connect.lo*
