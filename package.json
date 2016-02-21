@@ -40,7 +40,7 @@
     "phantomjs": "~1.9.2"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0",
+    "grunt": ">=0.4.0",
     "phantomjs": "~1.9.2"
   },
   "engines": {
