@@ -25,6 +25,10 @@ Then add this line to your project's Gruntfile:
 grunt.loadNpmTasks('grunt-mocha-webdriver');
 ```
 
+[Sample Gruntfile](https://github.com/jmreidy/grunt-mocha-webdriver/blob/master/Gruntfile.js)
+
+[Sample Tests](https://github.com/jmreidy/grunt-mocha-webdriver/tree/master/test)
+
 ###Using grunt-mocha-webdriver with Phantomjs
 In version 0.9.4 and later, phantom is included via its NPM module. In order
 to run tests against phantom, simply add the `usePhantom` flag to the options hash.
